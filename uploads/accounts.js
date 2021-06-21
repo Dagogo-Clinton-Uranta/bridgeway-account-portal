@@ -25,7 +25,7 @@ for (let i = 0; i < sheets.length; i++) {
     temp.forEach((res) => {
         accounts.push(res)
     })
-}
+} 
 
   /*let accounts = {details:accountArray}*/
 /*let accountsPart1 = accounts.slice(0,Math.ceil(accounts.length/200))
