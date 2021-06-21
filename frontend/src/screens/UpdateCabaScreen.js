@@ -107,7 +107,7 @@ const uploadFileHandler =async (e)=>{
     <center>
         <Card className='containerBox'>
     <FormContainer>
-    <h1> Create / Edit Product</h1>
+    <h1> Upload your CABA file</h1>
    {loadingUpdate &&<Loader/>}
     {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
 
@@ -118,7 +118,7 @@ const uploadFileHandler =async (e)=>{
  {/*1*/}      <Form.Group controlId='image'>
 
         <Form.Label>  File Upload Status </Form.Label>
-        <Form.Control type='text' placeholder="Upload a CABA file once a day" value={image} onChange={(e)=>setImage(e.target.value)}></Form.Control>
+        <Form.Control type='text' placeholder="Do not forget to upload twice a day!" value={image} onChange={(e)=>setImage(e.target.value)}></Form.Control>
         {/* You need to read about form group from react bootstrap*/}
          <Form.File className="accountInput" id="image-file" label="choose file" custom onChange={uploadFileHandler}>
            {uploading &&<Loader/>}

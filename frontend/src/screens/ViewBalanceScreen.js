@@ -107,6 +107,7 @@ useEffect(() => {
           <center><img className='bridgeLogo' src={bridgeway} alt={'the logo of bridgeway bank'} /></center>
        <FormContainer >
        <center> <h2 className='welcomeFont'>{account && account.details[0].Name}</h2></center>
+       <center> <p className='instructionSpace'>Your balance on {account && account.createdAt.substring(0,10)} at {account && account.time} is:</p></center>
           <hr className='dottedLine'/>
          <center><p className='instructionSpace'>Current Balance:</p>
          <h2 className='welcomeFont'>₦{account && account.details[0].Ledgerbalance}</h2>

@@ -36,13 +36,39 @@ connectDB()
 /*YOU'RE DEALING WITH A DATABASE, SO EVERYTHING RETURNS A PROMISE*/
 /*YOURE DEALING WITH A DATABASE, SO EVERYTHING RETURNS A PROMISE*/
 
+function showTime(){
+  let time = new Date()
+  let hour = time.getHours();
+  let min = time.getMinutes();
+  let sec = time.getSeconds();
+  let am_pm="AM"
+
+  if(hour>12){
+    hour -= 12;
+    am_pm="PM"
+  }
+
+  if(hour==0){
+    hour = 12;
+    am_pm="AM"
+  }
+   hour = hour < 10 ? "0" + hour :hour;
+   min = min < 10 ? "0" + min :min;
+   sec = sec < 10 ? "0" + sec :sec;
+
+   let currentTime = hour +":" + "00" + " " + am_pm
+   return currentTime
+}
+
+
+
 const importData = async()=> {
 
   try{
       
       await Account.deleteMany()
       await Account.create({details:[]})
-      await Account.findOneAndUpdate({details:[]},{details:accounts2})
+      await Account.findOneAndUpdate({details:[]},{details:accounts2,time:showTime()})
      
       /*const allAccounts = await Account.find({}) <---- 
         THIS IS HOW YOU'LL BE CALLING THEM IN THE ACCOUNT ROUTES
@@ -70,7 +96,7 @@ const destroyData = async()=> {
       await User.deleteMany()
 
  
-       console.log('Data Desroyed!'.red.inverse)
+       console.log('Data Destroyed!'.red.inverse)
        process.exit() /*what is this process.exit?*/
   }
 

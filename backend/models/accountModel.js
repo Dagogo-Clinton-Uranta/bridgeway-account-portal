@@ -14,11 +14,12 @@ const detailsSchema =  mongoose.Schema({
     /*Lastinactivity:{type: String },*/
     /*Sn:{type: String }*/
 
-},{timestamps:false})
+},{timestamps:true})
 
 const accountSchema =  mongoose.Schema({
-details:[detailsSchema]
-},{timestamps:false})
+details:[detailsSchema],
+time:{type: String ,required:false}
+},{timestamps:true})
 
 
 

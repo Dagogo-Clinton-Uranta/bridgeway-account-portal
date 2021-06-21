@@ -16,7 +16,29 @@ import accounts2 from '../../uploads/accounts2.js'
 
 
 
+function showTime(){
+  let time = new Date()
+  let hour = time.getHours();
+  let min = time.getMinutes();
+  let sec = time.getSeconds();
+  let am_pm="AM"
+ //12pm is not accounted for in this logic
+  if(hour>12){
+    hour -= 12;
+    am_pm="PM"
+  }
 
+  if(hour==0){
+    hour = 12;
+    am_pm="AM"
+  }
+   hour = hour < 10 ? "0" + hour :hour;
+   min = min < 10 ? "0" + min :min;
+   sec = sec < 10 ? "0" + sec :sec;
+
+   let currentTime = hour +":" + "00" + " " + am_pm
+   return currentTime
+}
 
 
 
@@ -59,7 +81,7 @@ router.post('/',upload.single('excel'),asyncHandler(async (req,res)=>{
   console.log(req.file.path)
   await Account.deleteMany()
   await Account.create({details:[]})
-  await Account.findOneAndUpdate({details:[]},{details:accounts2})
+  await Account.findOneAndUpdate({details:[]},{details:accounts2,time:showTime()})
   const successfulUpdate = await Account.find({})
    console.log('Accounts Updated!'.green.inverse)
    

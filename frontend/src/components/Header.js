@@ -89,7 +89,7 @@ userInfo.newMessages = users.some((user)=>{user.userMessageNotification % 2===0}
      
 </LinkContainer> }
 
-   {userInfo?(
+   {/*userInfo?(
      <NavDropdown title ={userInfo.name} id='username'>
      <LinkContainer to='/profile'>
           <NavDropdown.Item >Profile { userInfo && userInfo.adminMessageNotification &&<i className='fas fa-circle' style={{color:'red', fontSize:'7px'}}></i>} </NavDropdown.Item>
@@ -98,22 +98,21 @@ userInfo.newMessages = users.some((user)=>{user.userMessageNotification % 2===0}
 
        <NavDropdown.Item onClick={logoutHandler} >Logout </NavDropdown.Item>
      </NavDropdown>
-   ):(
+   ):*/(
      <LinkContainer to='/login'>
           <Nav.Link><i className='fas fa-user'></i>Staff</Nav.Link>
      </LinkContainer>
    )}
 
 
-{userInfo && userInfo.isMerchant && (
+{/*userInfo && userInfo.isMerchant && (
      <NavDropdown title ={'Merchant Functions'} id='username'>
 
-{/*i need to make a merchant token, so that merchants have access to a productlist distinct of admins*/}
-{/*1*/}      <LinkContainer to='/admin/productlist'>
+      <LinkContainer to='/admin/productlist'>
             <NavDropdown.Item >Products</NavDropdown.Item>
            </LinkContainer> 
 
-{/*2*/}      <LinkContainer to='/admin/orderlist'>
+     <LinkContainer to='/admin/orderlist'>
             <NavDropdown.Item >Orders</NavDropdown.Item>
            </LinkContainer>
 
@@ -125,21 +124,21 @@ userInfo.newMessages = users.some((user)=>{user.userMessageNotification % 2===0}
   
   <NavDropdown title ={'Admin Functions'} id='username'>
 
-{/*1*/}     <LinkContainer to='/admin/userlist'>
+    <LinkContainer to='/admin/userlist'>
             <NavDropdown.Item >Users </NavDropdown.Item>
           </LinkContainer>
 
-{/*2*/}      <LinkContainer to='/admin/productlist'>
+     <LinkContainer to='/admin/productlist'>
             <NavDropdown.Item >Products</NavDropdown.Item> 
            </LinkContainer>
 
-{/*3*/}      <LinkContainer to='/admin/orderlist'>
+     <LinkContainer to='/admin/orderlist'>
             <NavDropdown.Item >Orders</NavDropdown.Item>
            </LinkContainer>
 
      </NavDropdown>
      
-   )}
+   )*/}
 
 {/*console.log(users.some(function(user){user.userMessageNotification}))*/}
 
