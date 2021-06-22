@@ -1,6 +1,8 @@
 import path from 'path'
 //const path =require('path')
 
+import fs from 'fs'
+
 import express from 'express'
 //const express = require('express')
 
@@ -41,8 +43,17 @@ function showTime(){
 }
 
 
+const deleteCaba = (req,res,next) => {
+  try {fs.unlinkSync('./uploads/CABA.xlsx')
+  console.log("file deleted!")
+  next()
+}    
+  catch(err){
+    console.log('error while deleting file' + err)
+ }
+}
 
-
+ 
 
 const router = express.Router()
 
@@ -76,17 +87,19 @@ const upload = multer({
   }
 })
 
-router.post('/',upload.single('excel'),asyncHandler(async (req,res)=>{
+router.post('/',deleteCaba,upload.single('excel'),asyncHandler(async (req,res)=>{
   
   console.log(req.file.path)
   await Account.deleteMany()
   await Account.create({details:[]})
   await Account.findOneAndUpdate({details:[]},{details:accounts2,time:showTime()})
-  const successfulUpdate = await Account.find({})
-   console.log('Accounts Updated!'.green.inverse)
+  const successfulUpdate = await Account.find({time:showTime()})
+  /*make a better condition than time checking */
    
-   if(successfulUpdate){res.send(`the file has been updloaded successfully!`)}
-   else{res.send(`Please try to upload the file again`)}
+   if(successfulUpdate){res.send(`the file has been updloaded successfully!`)
+   console.log('Accounts Updated!'.green.inverse)}
+   else{res.send(`Please try to upload the file again`)
+   console.log('wahala dey o!'.red.inverse)}
 
 })) //upload.single is the middleware, yes
 

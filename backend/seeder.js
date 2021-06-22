@@ -65,10 +65,10 @@ function showTime(){
 const importData = async()=> {
 
   try{
-      
-      await Account.deleteMany()
+      await User.insertMany(users)
+     /* await Account.deleteMany()
       await Account.create({details:[]})
-      await Account.findOneAndUpdate({details:[]},{details:accounts2,time:showTime()})
+      await Account.findOneAndUpdate({details:[]},{details:accounts2,time:showTime()})*/
      
       /*const allAccounts = await Account.find({}) <---- 
         THIS IS HOW YOU'LL BE CALLING THEM IN THE ACCOUNT ROUTES
