@@ -7,8 +7,9 @@ const detailsSchema =  mongoose.Schema({
     /*Branch:{type: String },*/
     /*AccountNo:{type:{type:String }},*/
     Nubanno:{type:String},
-    Ledgerbalance:{type:String ,required:true },
+    /*Ledgerbalance:{type:String ,required:true },*/
     Availablebalance:{type:String,required:true },
+    Withdrawablebalance:{type:String,required:true}
     /*Accountoff:{type:String },*/
     /*Status:{type: String },*/
     /*Lastinactivity:{type: String },*/

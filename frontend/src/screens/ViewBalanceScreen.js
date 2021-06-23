@@ -110,10 +110,10 @@ useEffect(() => {
        <center> <p className='instructionSpace'>Your balance on {account && account.createdAt.substring(0,10)} at {account && account.time} is:</p></center>
           <hr className='dottedLine'/>
          <center><p className='instructionSpace'>Current Balance:</p>
-         <h2 className='welcomeFont'>₦{account && account.details[0].Ledgerbalance}</h2>
+         <h2 className='welcomeFont'>₦{account && account.details[0].Availablebalance}</h2>
          
          <p className='instructionSpace'>Withdrawable Balance:</p>
-         <h2 className='welcomeFont widthofElements'>₦{account && account.details[0].Availablebalance}</h2></center>
+         <h2 className='welcomeFont widthofElements'>₦{account && account.details[0].Withdrawablebalance}</h2></center>
          <hr className='dottedLine2'/>
         <center> <Link to={`/`}> <Button  className='vbButton widthOfElements' variant='primary'>Go Back</Button></Link></center>
        </FormContainer>

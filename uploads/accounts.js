@@ -35,6 +35,6 @@ let accountsPart4 = accounts.slice(Math.ceil(accounts.length*3/5),Math.ceil(acco
 let accountsPart5 = accounts.slice(Math.ceil(accounts.length*4/5),Math.ceil(accounts.length + 1))*/
 
 // Printing data
-console.log(typeof(accounts[6].Nubanno)/*,accountsPart3.length,accountsPart4.length,accountsPart5.length*/)
+console.log(accounts[6]/*,accountsPart3.length,accountsPart4.length,accountsPart5.length*/)
 
 export default accounts /*{accountsPart1,accountsPart2,accountsPart3,accountsPart4,accountsPart5}*/
