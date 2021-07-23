@@ -12,7 +12,7 @@ const getAccountByAccountNumber = asyncHandler(async (req,res) => {
     
    const account = await Account.findOne({},{details:{$elemMatch:{Nubanno:req.params.accountId}},createdAt:1,time:1}/*,{createdAt:1}*/,{ useFindAndModify: false})  
     
-   console.log(account)
+   /*console.log(account)*/
  
  /*console.log(req.params.accountId)*/
 
@@ -38,8 +38,8 @@ const getAccountByAccountNumber = asyncHandler(async (req,res) => {
 
     
     res.json(account)
-   { res.status(404) 
-   throw new Error('Account not found, please enter your details correctly')}
+   /*{ res.status(404) 
+   throw new Error('Account not found, please enter your details correctly')}*/
 })
 
 export default getAccountByAccountNumber

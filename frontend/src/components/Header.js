@@ -81,13 +81,13 @@ userInfo.newMessages = users.some((user)=>{user.userMessageNotification % 2===0}
 
     {/*DONT FORGET TO USE THE CDN OF FONT-AWESOME IN INDEX.HTML
     FROM CDN JS.COM ,JUST TYPE FONT AWESOME AND COPY IT*/}
-{cartVisibility &&
+{/*cartVisibility &&
 <LinkContainer to='/cart'>
      <Nav.Link ><i className='fas fa-shopping-cart'></i>Cart
      {userInfo && userInfo.adminMessageNotification && <i className='fas fa-circle' style={{color:'red', fontSize:'8px', marginLeft:'15px' , marginRight:'-12px'}}></i>}
      </Nav.Link>
      
-</LinkContainer> }
+</LinkContainer>*/ }
 
    {/*userInfo?(
      <NavDropdown title ={userInfo.name} id='username'>
@@ -98,7 +98,7 @@ userInfo.newMessages = users.some((user)=>{user.userMessageNotification % 2===0}
 
        <NavDropdown.Item onClick={logoutHandler} >Logout </NavDropdown.Item>
      </NavDropdown>
-   ):(
+   ):*//*(
      <LinkContainer to='/login'>
           <Nav.Link><i className='fas fa-user'></i>Staff</Nav.Link>
      </LinkContainer>

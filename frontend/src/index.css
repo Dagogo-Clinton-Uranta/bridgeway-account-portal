@@ -45,19 +45,27 @@ h2 {
 /* container for welcome */
 
 .containerBox {
-  border-radius:10%;
+  border-radius:2%;
   background-color: rgb(244, 244, 247);
-  max-width:800px;
-  box-shadow: 10px 15px 15px rgb(20, 20, 20) ;
+  /*max-width:800px;*/
+  box-shadow: 10px 15px 15px rgb(20, 20, 20);
+  margin-bottom:6rem ;
 }
 
 .instructionSpace {
   margin-bottom:1rem;
 }
 
+.transactionSpace {
+  margin-bottom:4rem;
+  margin-top:4rem;
+}
+
 .widthOfElements{
   max-width:80%
 }
+
+
 
 /* THE LOGO IN THE NAVBAR*/
 .bridgeNavLogo {
@@ -110,6 +118,37 @@ h2 {
   border:2px black;
    border-style:dashed;
 } 
+
+
+/*TO CENTRALIZE OPTIONS IN THE DROPDOWN MENU*/
+.optionCentralize {
+  max-width: 8rem;
+  margin-top:1.5rem;
+}
+
+
+/*THE TABLE FOR THE TRANSACTIONS */
+
+.tablelayout {
+ width:150%;
+ /*overflow-x:visible;*/
+ height: auto;
+ 
+ margin-left:-6rem;
+ margin-top:5rem;
+ margin-bottom:8rem;
+}
+
+@media screen and (max-width:768px) {
+  .tablelayout {
+    margin-left:0rem;
+    width:100%;
+    overflow:hidden;
+  }
+}
+
+
+
 
 /*VIEW BALANCE BUTTON*/
  .vbButton {

@@ -8,6 +8,7 @@ import WelcomeScreen from './screens/WelcomeScreen.js'
 import LoginScreen from './screens/LoginScreen.js'
 import ViewBalanceScreen from './screens/ViewBalanceScreen.js'
 import UpdateCabaScreen from './screens/UpdateCabaScreen.js'
+import TransactionLogsScreen from './screens/TransactionLogsScreen.js'
 /*import HomeScreen from './screens/HomeScreen.js'
 import ProductScreen from './screens/ProductScreen.js'
 import CartScreen from './screens/CartScreen.js'
@@ -36,9 +37,10 @@ const App = () => {
        <Container>
        < Route path='/' exact component={WelcomeScreen}/>
        < Route path='/viewbalance/:id' component={ViewBalanceScreen}/>
-       {/*< Route path='/login' component={LoginScreen}/>
-       < Route path='/updatecaba' component={UpdateCabaScreen}/>
-       < Route path='/order/:id' component={OrderScreen}/>
+       < Route path='/login' component={LoginScreen}/>
+       {/*< Route path='/updatecaba' component={UpdateCabaScreen}/>*/}
+       < Route path='/transactionlogs/:id/month/:month/year/:year' component={TransactionLogsScreen}/>
+       {/*< Route path='/order/:id' component={OrderScreen}/>
        < Route path='/shipping' component={ShippingScreen}/>
        < Route path='/payment' component={PaymentScreen}/>
        < Route path='/placeorder' component={PlaceOrderScreen}/>

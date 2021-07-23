@@ -1,13 +1,15 @@
 import bcrypt from 'bcryptjs'
 //const bcrypt = require('bcryptjs')
-const dummyPassword = '123456'
+const dummyPassword = '0284'
+const johnnyPassword = '123456'
 const salt = bcrypt.genSaltSync(10)
 const hash = bcrypt.hashSync(dummyPassword,salt)
+const johash = bcrypt.hashSync(johnnyPassword,salt)
 
 const users = [
   {
-    name:'Admin User',
-    email:'admin@emaple.com',
+    name:'Adijat Odubanjo',
+    email:'odubanjoadijat@bridgewaymfb.com',
     password: hash,
     isAdmin:true,
     isMerchant:false,
@@ -23,7 +25,7 @@ const users = [
   {
     name:'John Doe',
     email:'john@yahoo.com',
-    password: hash,
+    password: johash,
     isAdmin:false, 
     isMerchant:false,
     userMessage:'hi',

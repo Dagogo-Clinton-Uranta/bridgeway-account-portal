@@ -17,14 +17,15 @@ const UpdateCabaScreen= ({match, history}) => { //he is taking location & histor
 
   const [name,setName] = useState('')
   //const [email,setEmail] = useState('')
-  const [price,setPrice] = useState(0)  //component level state right here, not application level state
+  const [price,setPrice] = useState(0)  
   const [image,setImage] = useState('')
+  const [image2,setImage2] = useState('')
   const [brand,setBrand] = useState('')
   const [category,setCategory] = useState('')
   const [countInStock,setCountInStock] = useState('')
   const [description,setDescription] = useState('')
   const [uploading,setUploading] = useState(false)
-
+  const [uploading2,setUploading2] = useState(false)
   
   const dispatch = useDispatch() //dont forget that real dispatches only take place in action creators, you are only calling useDispatch here
 
@@ -85,26 +86,33 @@ const uploadFileHandler =async (e)=>{
    }
 }
 
-  /*const submitHandler = (e) => {
-          e.preventDefault()
-  dispatch(updateProduct({
-    _id:productId,
-    name,
-    price,
-    brand,
-    category,
-    image,
-    description,
-    countInStock
-  }))
+const uploadCallOverHandler =async (e)=>{
+  const file = e.target.files[0] //we get access to this as an array, because you have the ability to upload multiple files
+  const formData = new FormData()
+  formData.append('excel',file)
+  setUploading2(true)
 
-  }*/
+   try{
+     const config ={
+     headers:{ 
+       'Content-Type':'multipart/form-data'
+     }
+    }
+     const {data} =await axios.post('/api/upload/callover', formData ,config)
+     setImage2(data)
+     setUploading2(false)
+   }
+   catch(error){
+      console.log(error)
+     setUploading2(false)
+   }
+} 
 
     return (
         <>
     {/*<Link to='/' className='btn btn-light my-3'>Go back</Link>*/}
      
-    <center>
+    <center >
         <Card className='containerBox'>
     <FormContainer>
     <h1> Upload your CABA file</h1>
@@ -122,6 +130,38 @@ const uploadFileHandler =async (e)=>{
         {/* You need to read about form group from react bootstrap*/}
          <Form.File className="accountInput" id="image-file" label="choose file" custom onChange={uploadFileHandler}>
            {uploading &&<Loader/>}
+         </Form.File>
+       </Form.Group>
+
+
+
+        {<Link to ='/'><Button  className='buttonMargin' type='submit' variant='primary'>Go Back</Button></Link>}
+      </Form>
+    )}
+
+     
+    </FormContainer>
+    </Card>
+     </center>
+
+     <center >
+        <Card className='containerBox'>
+    <FormContainer>
+    <h1> Upload your CALL OVER report</h1>
+   {loadingUpdate &&<Loader/>}
+    {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+
+    {loading? <Loader/>:error?<Message variant='danger'>{error}</Message>:(
+      <Form /*onSubmit={submitHandler}*/>
+ 
+
+ {/*1*/}      <Form.Group controlId='image'>
+
+        <Form.Label>  File Upload Status </Form.Label>
+        <Form.Control type='text' placeholder="Do not forget to upload at least once a day!" value={image2} onChange={(e)=>setImage2(e.target.value)}></Form.Control>
+        {/* You need to read about form group from react bootstrap*/}
+         <Form.File className="accountInput" id="image2-file" label="choose file" custom onChange={uploadCallOverHandler}>
+           {uploading2 &&<Loader/>}
          </Form.File>
        </Form.Group>
 
