@@ -103,15 +103,15 @@ useEffect(() => {
           
        <center className="mt-4">
           <Card className='containerBox'>
-          {<center className='mt-4'><h3></h3></center>}
+          
        <FormContainer >
-       {transaction && transaction.length>0 && <center> <h2 className='welcomeFont '>Transactions for {month}-{year}</h2></center>}
-      
+       {transaction && transaction.length>0 && <center> <h2 className='transactionLogsTitle'>Transactions for {month}-{year}</h2></center>}
+       {transaction && transaction.length>0 && <Link to={`/viewbalance/${accountId}`}> <Button  className=' widthOfElements2' variant='primary'>Go Back</Button></Link>}
  { transaction && transaction.length>0 ?
         
       <div className ='tablelayout'>
         <center>
-     <Table striped border hover responsive className ='table-xs '>
+     <Table striped border hover responsive className ='table-sm  '>
      <thead>
       <tr>
       <th>S/N</th>
@@ -131,11 +131,11 @@ useEffect(() => {
           
        <tr>
             <td>{index + 1}</td>
-            <td>{transaction && customer.Transactiondate.substring(0,11)}</td>
-            <td>{transaction && customer.Transactiondate.substring(12,17)}</td>
-            <td> {transaction && customer.Credit === ''?'DEBIT':(transaction && customer.Debit === ''?'CREDIT':'') }</td>
-            <td> {transaction && customer.Credit !== ''?transaction && customer.Credit:transaction && customer.Debit} </td> 
-            <td>{transaction && customer.Narration}</td>
+            <td >{transaction && customer.Transactiondate.substring(0,1)==='0'?customer.Transactiondate.substring(1,2):transaction && customer.Transactiondate.substring(0,2)}{customer.Transactiondate.substring(0,2)==='01'||customer.Transactiondate.substring(0,2)==='21'||customer.Transactiondate.substring(0,2)==='31'?'st':(customer.Transactiondate.substring(0,2)==='02'||customer.Transactiondate.substring(0,2)==='22'?'nd':(customer.Transactiondate.substring(0,2)==='03'||customer.Transactiondate.substring(0,2)==='23'?'rd':'th'))}</td>
+            <td >{transaction && customer.Transactiondate.substring(12,17)}</td>
+            <td > {transaction && customer.Credit === ''?'DEBIT':(transaction && customer.Debit === ''?'CREDIT':'') }</td>
+            <td > {transaction && customer.Credit !== ''?transaction && customer.Credit:transaction && customer.Debit} </td> 
+            <td className='singleLine'>{transaction && customer.Narration}</td>
          </tr>
       
          )

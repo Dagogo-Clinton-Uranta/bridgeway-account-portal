@@ -121,7 +121,9 @@ const upload2 = multer({
   }
 })
 
-
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+]
 
 router.post('/',deleteCaba,upload.single('excel'),asyncHandler(async (req,res)=>{
   
@@ -143,18 +145,38 @@ router.post('/',deleteCaba,upload.single('excel'),asyncHandler(async (req,res)=>
 
 router.post('/callover',deleteCallOver,upload2.single('excel'),asyncHandler(async (req,res)=>{
   
-  console.log(transactions())
+  /*await REMOVING ALL TRANSACTIONS THAT ARE OLDER THAN A YEAR*/
+  
+  await Transaction.deleteMany({Financialdate:{$regex:`${monthNames[date.getMonth()]}-${date.getFullYear()-1}`,$options:'i'}})
+
+  const transDates = transactions().map((item)=>{ return item.Financialdate})
+
+  function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+  }
+
+  const uniqueDates = transDates.filter(onlyUnique) 
+
+  console.log(uniqueDates)
+
+/*CONSIDER FIRST DELETING THE ENTRIES THAT HAVE FINANCIAL DATES AS WHAT IS ABOUT TO BE UPLOADED, TO AVOID DUPLICATION, WHICH I DID BELOW*/
+
+  for(let i = 0;i < uniqueDates.length + 1;i++){
+    await Transaction.deleteMany({Financialdate:uniqueDates[i]})
+  }
   /*await Transaction.remove() I PLAN TO REMOVE ALL TRANSACTIONS THAT ARE OLDER THAN A YEAR*/
-  /*CONSIDER FIRST DELETING THE ENTRIES THAT HAVE FINANCIAL DATES AS WHAT IS ABOUT TO BE UPLOADED, TO AVOID DUPLICATION, WHICH I DID BELOW*/
-   await Transaction.remove({Financialdate:transactions()[0].Financialdate})
+  
+  
   await Transaction.insertMany(transactions())
  
+
+
   
   const successfulUpdate = await Transaction.findOne({Financialdate:transactions()[0].Financialdate})
-  /*this condition finds one entry with the financial date being the same as the file that was uploaded*/
+  /*this condition finds one entry with the financial date being the same as the first entry of the file that was uploaded*/
     console.log(successfulUpdate)
   
-   if(successfulUpdate){res.send(`the file has been updloaded successfully!`)
+   if(successfulUpdate){res.send(`the file has been uploaded successfully!`)
    console.log('Accounts Updated!'.green.inverse)}
    else{res.send(`Please try to upload the file again`)
    console.log('wahala dey o!'.red.inverse)}
