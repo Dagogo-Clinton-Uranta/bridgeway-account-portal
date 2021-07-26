@@ -1,6 +1,6 @@
 
 import React from 'react'
-import {BrowserRouter as Router,Route} from 'react-router-dom';
+import {BrowserRouter as Router,MemoryRouter,Route} from 'react-router-dom';
 import {Container} from 'react-bootstrap';
 import Header from './components/Header.js'
 import Footer from './components/Footer.js'
@@ -31,7 +31,7 @@ const App = () => {
     return (
       
       
-  <Router> 
+  <MemoryRouter> 
       <Header/>
       <main className ='py-3'>
        <Container>
@@ -67,7 +67,7 @@ const App = () => {
        </Container>
       </main>
       <Footer/>
-  </Router> 
+  </MemoryRouter> 
   
     )
 }
