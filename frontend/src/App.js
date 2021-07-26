@@ -38,7 +38,7 @@ const App = () => {
        < Route path='/' exact component={WelcomeScreen}/>
        < Route path='/viewbalance/:id' component={ViewBalanceScreen}/>
        < Route path='/login' component={LoginScreen}/>
-       < Route path='/updatecaba' component={UpdateCabaScreen}/>
+       {/*< Route path='/updatecaba' component={UpdateCabaScreen}/>*/}
        < Route path='/transactionlogs/:id/month/:month/year/:year' component={TransactionLogsScreen}/>
        {/*< Route path='/order/:id' component={OrderScreen}/>
        < Route path='/shipping' component={ShippingScreen}/>
