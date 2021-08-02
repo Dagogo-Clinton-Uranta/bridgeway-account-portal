@@ -74,10 +74,14 @@ const importData = async()=> {
       await Account.create({details:[]})
       await Account.findOneAndUpdate({details:[]},{details:accounts(),time:showTime()})*/
      
-       
+        // WARNING:IF YOU RUN DELETE, YOU'LL CLEAR THE WHOLE DATABASE OF TRANSACTIONS  AND THEN ONLY INSERT ONE DAY'S WORTH OF TRANSACTIONS, SO BE CAREFUL
       /*await Transaction.deleteMany()*/
-      /*await Transaction.insertMany(transactions())*/ // WARNING:IF YOU RUN DELETE, YOU'LL CLEAR THE WHOLE DATABASE OF TRANSACTIONS  AND THEN ONLY INSERT ONE DAY'S WORTH OF TRANSACTIONS, SO BE CAREFUL
-      
+   
+    await Transaction.insertMany(transactions())
+
+   /*   for(let i = 0;i < transactions().length + 1;i++){
+     if(transactions()[i].Nuban){ await Transaction.create(transactions()[i])}  
+    }*/
       
       /*this was a pivotal clue to how i solved the problem the first time const allAccounts = await Account.find({}) <---- 
         THIS IS HOW YOU'LL BE CALLING THEM IN THE ACCOUNT ROUTES

@@ -133,7 +133,7 @@ const selectionHandler = (chosenMonth) => {
          (
          transaction.length === 0 ? <center> <h4 className='welcomeFont'>No Recent transactions.</h4></center>:
          <>
-         <center> <p className='instructionSpace'>Your(Latest) Transaction at {transaction && transaction[0].Transactiondate.substring(12,17)}{transaction && transaction[0].Transactiondate.substring(12,17)>='12'?' PM':' AM'} </p><p> on  {transaction && transaction[0].Transactiondate.substring(0,11)} is as follows:</p></center>
+         <center> <p className='instructionSpace'>Your(Latest) Transactions  </p><p> on  {transaction && transaction[0].Transactiondate.substring(0,11)} are as follows:</p></center>
           
           <div className ='tablelayout'>
             <center>
