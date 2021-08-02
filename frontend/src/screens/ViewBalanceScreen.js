@@ -137,9 +137,10 @@ const selectionHandler = (chosenMonth) => {
           
           <div className ='tablelayout'>
             <center>
-         <Table striped border hover responsive className ='table-xs '>
+         <Table striped border hover responsive className ='table-sm '>
          <thead>
           <tr>
+          <th>S/N</th>
            <th>DATE</th>
            <th>TIME</th>
            <th>TYPE</th>
@@ -149,15 +150,23 @@ const selectionHandler = (chosenMonth) => {
          </tr>
          </thead>
          <tbody>
-         <tr>
-              <td>{transaction && transaction[0].Transactiondate.substring(0,11)}</td>
-              <td>{transaction && transaction[0].Transactiondate.substring(12,17)}</td>
-              <td> {transaction && transaction[0].Credit === ''?'DEBIT':(transaction && transaction[0].Debit === ''?'CREDIT':'') }</td>
-              <td> {transaction && transaction[0].Credit !== ''?transaction && transaction[0].Credit:transaction && transaction[0].Debit} </td> 
-              
-              <td>{transaction && transaction[0].Narration}</td>
-           </tr>
-           </tbody>
+
+{transaction.map((customer,index) => {
+return(
+
+  
+<tr>
+    <td>{index + 1}</td>
+    <td >{transaction && customer.Transactiondate.substring(0,1)==='0'?customer.Transactiondate.substring(1,2):transaction && customer.Transactiondate.substring(0,2)}{customer.Transactiondate.substring(0,2)==='01'||customer.Transactiondate.substring(0,2)==='21'||customer.Transactiondate.substring(0,2)==='31'?'st':(customer.Transactiondate.substring(0,2)==='02'||customer.Transactiondate.substring(0,2)==='22'?'nd':(customer.Transactiondate.substring(0,2)==='03'||customer.Transactiondate.substring(0,2)==='23'?'rd':'th'))}</td>
+    <td >{transaction && customer.Transactiondate.substring(12,17)}</td>
+    <td > {transaction && customer.Credit === ''?'DEBIT':(transaction && customer.Debit === ''?'CREDIT':'') }</td>
+    <td > {transaction && customer.Credit !== ''?transaction && customer.Credit:transaction && customer.Debit} </td> 
+    <td className='singleLine'>{transaction && customer.Narration}</td>
+ </tr>
+
+ )
+})}
+</tbody>
          </Table>
          </center>
           </div>
