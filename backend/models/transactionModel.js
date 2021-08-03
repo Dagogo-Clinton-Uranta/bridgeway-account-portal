@@ -25,7 +25,7 @@ const transactionSchema =  mongoose.Schema({
         /* maybe an address entry for merchants ? */
         /*maybe an account number entry, so we can verify that you have an account at bridgeway */
 
-},{timestamps:false /*you want a createdAt? you add timestamps:true*/})
+},{timestamps:true /*you want a createdAt? you add timestamps:true*/})
 
 /*userSchema.methods.matchPassword = async function(enteredPassword){
   return await bcrypt.compare(enteredPassword,this.password)

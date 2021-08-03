@@ -36,6 +36,7 @@ const ViewBalanceScreen = ({history,match}) => {
     const transactionDetails = useSelector(state => state.transactionDetails)
   const {transaction,loading:transactionloading,error:transactionerror} = transactionDetails
   console.log(transaction)
+  console.log(transactionerror)
  console.log(account)
 
 /*let personsAccount
@@ -128,12 +129,12 @@ const selectionHandler = (chosenMonth) => {
          <hr className='dottedLine2'/>
 
          <center> <h2 className='welcomeFont'>Latest Transactions</h2></center>
-         {!transaction?<center>  <hr className='dottedLine2'/><h4 className='welcomeFont'>Please Refresh the Screen</h4></center>:
+         {!transaction?<center>  <hr className='dottedLine2'/><h4 className='welcomeFont'>No Recent transactions.</h4></center>:
          
          (
          transaction.length === 0 ? <center> <h4 className='welcomeFont'>No Recent transactions.</h4></center>:
          <>
-         <center> <p className='instructionSpace'>Your(Latest) Transactions  </p><p> on  {transaction && transaction[0].Transactiondate.substring(0,11)} are as follows:</p></center>
+         <center> <p className='instructionSpace'>Your Latest Transactions  </p><p>( on {transaction && transaction[0].Transactiondate.substring(0,11)}) are as follows:</p></center>
           
           <div className ='tablelayout'>
             <center>

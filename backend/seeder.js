@@ -75,8 +75,10 @@ const importData = async()=> {
       await Account.findOneAndUpdate({details:[]},{details:accounts(),time:showTime()})*/
      
         // WARNING:IF YOU RUN DELETE, YOU'LL CLEAR THE WHOLE DATABASE OF TRANSACTIONS  AND THEN ONLY INSERT ONE DAY'S WORTH OF TRANSACTIONS, SO BE CAREFUL
-      /*await Transaction.deleteMany()*/
+     /* await Transaction.deleteMany()*/
    
+      /*{Financialdate:{ $regex: `${'Jul'}-${'2021'}`, $options: 'i' }}*/
+
     await Transaction.insertMany(transactions())
 
    /*   for(let i = 0;i < transactions().length + 1;i++){
