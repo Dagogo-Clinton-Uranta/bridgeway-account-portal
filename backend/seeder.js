@@ -30,6 +30,8 @@ import Order from './models/orderModel.js'
 
 import connectDB from './config/db.js'
 import Transaction from './models/transactionModel.js'
+
+import Message from './models/messageModel.js'
 //const connectDB =require('./config/db.js')
 
  dotenv.config()
@@ -73,17 +75,11 @@ const importData = async()=> {
       /*await Account.deleteMany() you cant be deleting entries anyhow now,it was only for test purposes, until you confirm with downstairs
       await Account.create({details:[]})
       await Account.findOneAndUpdate({details:[]},{details:accounts(),time:showTime()})*/
-     
-        // WARNING:IF YOU RUN DELETE, YOU'LL CLEAR THE WHOLE DATABASE OF TRANSACTIONS  AND THEN ONLY INSERT ONE DAY'S WORTH OF TRANSACTIONS, SO BE CAREFUL
-     /* await Transaction.deleteMany()*/
-   
-      /*{Financialdate:{ $regex: `${'Jul'}-${'2021'}`, $options: 'i' }}*/
-
-    await Transaction.insertMany(transactions())
-
-   /*   for(let i = 0;i < transactions().length + 1;i++){
-     if(transactions()[i].Nuban){ await Transaction.create(transactions()[i])}  
-    }*/
+      /*await Message.deleteMany()*/
+       
+      /*await Transaction.deleteMany()*/
+      /*await Transaction.insertMany(transactions())*/ // WARNING:IF YOU RUN DELETE, YOU'LL CLEAR THE WHOLE DATABASE OF TRANSACTIONS  AND THEN ONLY INSERT ONE DAY'S WORTH OF TRANSACTIONS, SO BE CAREFUL
+      
       
       /*this was a pivotal clue to how i solved the problem the first time const allAccounts = await Account.find({}) <---- 
         THIS IS HOW YOU'LL BE CALLING THEM IN THE ACCOUNT ROUTES

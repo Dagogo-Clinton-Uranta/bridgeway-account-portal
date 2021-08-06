@@ -5,7 +5,7 @@ import {productListReducer,productListByMerchantReducer, productDetailsReducer, 
 import {cartReducer} from './reducers/cartReducers.js'
 import {userLoginReducer,userSendReducer,adminSendReducer, userVerifyReducer, userRegisterReducer, userDetailsReducer, userProfileUpdateReducer,userListReducer,userDeleteReducer,userUpdateReducer} from './reducers/userReducers.js'
 import {orderCreateReducer, orderDetailsReducer, orderPayReducer,orderDeliverReducer, orderListMyReducer,orderListReducer,orderApproveReducer } from './reducers/orderReducers.js'
-import {accountDetailsReducer,transactionDetailsReducer} from  './reducers/accountReducers.js'
+import {accountDetailsReducer,transactionDetailsReducer,chatDetailsReducer} from  './reducers/accountReducers.js'
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -35,6 +35,7 @@ const reducer = combineReducers({
   orderList:orderListReducer,
   orderApprove:orderApproveReducer,
   accountDetails:accountDetailsReducer,
+  chatDetails:chatDetailsReducer,
   transactionDetails:transactionDetailsReducer
 })
 //WE JSON.PARSE LOCAL STORAGE CUZ ITS IN STRING FORM AND WE WANT OUR OBJECT BACK

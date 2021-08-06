@@ -3,6 +3,9 @@ import {
     ACCOUNT_DETAILS_REQUEST,
     ACCOUNT_DETAILS_SUCCESS,
     ACCOUNT_DETAILS_FAILURE,
+    CHAT_DETAILS_REQUEST,
+    CHAT_DETAILS_SUCCESS,
+    CHAT_DETAILS_FAILURE,
     TRANSACTION_DETAILS_REQUEST,
     TRANSACTION_DETAILS_SUCCESS,
     TRANSACTION_DETAILS_FAILURE
@@ -49,3 +52,20 @@ export const showTransactionDetails = (accountId='',month='',year='') => async(d
 }
 
 
+export const showChatDetails = (accountId) => async(dispatch) => {
+   
+    try{
+        dispatch({type:CHAT_DETAILS_REQUEST})
+
+        const {data} = await axios.get(`/api/accounts/messages?id=${accountId}`)
+
+        dispatch({type:CHAT_DETAILS_SUCCESS,
+                      payload:data})
+    }
+    catch(error){
+        dispatch({type:CHAT_DETAILS_FAILURE,
+        payload:error.response && error.response.data.message?
+        error.response.data.message:error.message })
+    }
+
+}

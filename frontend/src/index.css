@@ -61,6 +61,42 @@ h2 {
   margin-top:4rem;
 }
 
+
+/*THE CHAT FEATURE*/
+.clientMessage{
+  background-color: rgb(180, 180, 160);
+  border-radius: 5%;
+  max-width: 50%;
+  color:#fff;
+  box-shadow: 5px 15px 15px rgb(151, 143, 143);
+  font-size:1.5rem;
+}
+
+.clientIndent{
+  margin-right: -50%;
+}
+
+.adminMessage{
+  background-color: #4c9eda;
+  border-radius: 5%;
+  max-width: 50%;
+  color:#fff;
+  box-shadow: 5px 15px 15px rgb(151, 143, 143);
+  font-size:1.5rem;
+}
+
+.adminIndent{
+  margin-left: -50%;
+}
+
+
+.messageBox{
+  border: 0.05px dashed black;
+}
+
+/*THE CHAT FEATURE*/
+
+
 .widthOfElements{
   max-width:80%;
 }
@@ -117,6 +153,20 @@ h2 {
 .dottedLine2 {
   margin-bottom: 3rem;
   border-top: 2px dashed black;
+  border-top: 2px dashed black;
+}
+
+.startOfChat {
+  margin-top: 3rem;
+  border-top: 2px dashed black;
+  margin-bottom: 2rem;
+}
+
+
+.endOfChat {
+  margin-top: 5rem;
+  border-top: 2px dashed black;
+  margin-bottom: 3rem;
 }
 
 /* INPUT LABEL FIELD FOR ACCOUNT NUMBER */

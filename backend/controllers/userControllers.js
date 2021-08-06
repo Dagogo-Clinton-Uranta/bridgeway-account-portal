@@ -1,6 +1,9 @@
 import User from '../models/userModel.js'
 //const User = require('../models/userModel.js')
 
+import Message from '../models/messageModel.js'
+//I have to make an exception here because the messages are going to this message model in my database and i didn't want to create a new file and route etc.
+
 import asyncHandler from 'express-async-handler'
 //const asyncHandler = require('express-async-handler')
 
@@ -17,6 +20,7 @@ import nodemailer from 'nodemailer'
 import dotenv from 'dotenv'
 
 import mongoose from 'mongoose'
+//import Message from '../../frontend/src/components/Message.js';
 
 //I'm using this bit of code to  convert my strings to object Id
 
@@ -59,62 +63,40 @@ const authUser = asyncHandler(async (req, res) => {
 //@access Public
 const presentClientMessage = asyncHandler(async (req, res) => {
   res.header("Access-Control-Allow-Origin","*")
-  const { clientId, clientMessage, clientName } =  await req.body
+  const {  clientMessage, accountId} =  await req.body
   console.log(req.body)
-  const objectId = new mongoose.Types.ObjectId(clientId)
+  
   // i need to reset a particular users message so i have to delete by the id i just recieved, HENCE I NEED ID
-  await User.findByIdAndUpdate({_id:objectId}, { userMessage: clientMessage , adminMessageNotification:true , userMessageNotification:false}, { useFindAndModify: false })
+  //await User.findByIdAndUpdate({_id:objectId}, { userMessage: clientMessage , adminMessageNotification:true , userMessageNotification:false}, { useFindAndModify: false })
   /*clientMessage has been changed to string before being passed into the database cuz of app.use(express.json)*/
 
+  const freshMessage = await Message.find({Nuban:accountId})
+   console.log(freshMessage)
+  if(freshMessage.length === 0){
 
-  //what we will use to generate a dynamic access token
-  const oAuth75Client = new google.auth.OAuth2( process.env.GOOGLE_CLIENT_ID,  process.env.GOOGLE_CLIENT_SECRET, process.env.REDIRECT_URI)
+     await Message.create({
+      enquiry:clientMessage,
+        previousEnquiry:'',
+        adminAnswer:'',
+        Nuban:accountId,
+        adminMessageNotification:true,
+        userMessageNotification:false
+     })
+
+  }
+  else if(freshMessage[0].adminAnswer.length > 1){
+    console.log('theres an admin answer so we can update the previous enquiry and enquiry fields')
+   const messagePosition = await Message.findOne({Nuban:accountId})
+    await Message.findOneAndUpdate({Nuban:accountId}, { enquiry: clientMessage , previousEnquiry:messagePosition.enquiry, adminMessageNotification:true , userMessageNotification:false}, { useFindAndModify: false })
+  }
+   else{
+    console.log('theres no admin answer so we can only update the enquiry field')
+    await Message.findOneAndUpdate({Nuban:accountId}, { enquiry: clientMessage , adminMessageNotification:true , userMessageNotification:false}, { useFindAndModify: false })
+   }
+
   
-  oAuth75Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
-  const accessToken = oAuth75Client.getAccessToken().catch(console.error)
-     console.log(oAuth75Client)
-  try{
-    
-
-    //setup of email for nodemailer
-    let transporter =   nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 465,
-      service: 'gmail',
-      secure: true,
-      debug: false,
-      logger: true,
-      auth: {
-        type: 'OAuth2',
-        user: process.env.EMAIL,
-        clientId: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        refreshToken: process.env.REFRESH_TOKEN,
-        accessToken: accessToken.token
-      }
-    })
-    //what i actually want to send to the user/client 
-    let mailOptions = {
-      from: process.env.EMAIL,
-      to: 'smartsoft_mikeo@yahoo.com',
-      subject: `Message from client: ${clientName}, --ID: ${clientId}`, 
-      text: `${clientMessage}` 
-    }
-
-    //actually sending the mail
-      transporter.sendMail(mailOptions , function (err, data) {
-      if (err) {
-        console.log('Error Occured:', err);
-      } else {
-        console.log('Email sent!');
-      }
-
-    })
-  }
-   catch(error){
-    console.log(error)
-  }
-  res.status(201)
+  
+  res.status(200)
 })
 
 

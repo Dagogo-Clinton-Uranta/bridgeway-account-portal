@@ -98,11 +98,12 @@ userInfo.newMessages = users.some((user)=>{user.userMessageNotification % 2===0}
 
        <NavDropdown.Item onClick={logoutHandler} >Logout </NavDropdown.Item>
      </NavDropdown>
-   ):*/
-    /* <LinkContainer to='/login'>
+   ):*//*(
+     <LinkContainer to='/login'>
           <Nav.Link><i className='fas fa-user'></i>Staff</Nav.Link>
-     </LinkContainer>*/
-   }
+     </LinkContainer>
+   )*/}
+
 
 
 {/*userInfo && userInfo.isMerchant && (
@@ -155,4 +156,4 @@ userInfo.newMessages = users.some((user)=>{user.userMessageNotification % 2===0}
 }
 
 export default Header
-/*export as default means that , that's the only thing coming out of this file*/
+

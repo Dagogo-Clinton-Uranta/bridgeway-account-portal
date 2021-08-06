@@ -66,7 +66,7 @@ export const login = (email,password) => async(dispatch) =>{
    }
 }
 
-export const clientSaid = (clientMessage, clientId,clientName) => async(dispatch) => {
+export const clientSaid = (clientMessage,accountId) => async(dispatch) => {
     try{
       dispatch({type: USER_SEND_REQUEST})
       
@@ -76,7 +76,7 @@ export const clientSaid = (clientMessage, clientId,clientName) => async(dispatch
         }
       }
 
-      const {data} = await axios.patch('api/users/clientMessage',{clientMessage,clientId,clientName},config)
+      const {data} = await axios.post('/api/users/clientMessage',{clientMessage,accountId},config)
       
       dispatch({type:USER_SEND_SUCCESS,
       payload:data})

@@ -15,7 +15,7 @@ const router = express.Router()
 //@this is good commenting syntax,leting others know the routes
 router.route('/').post(registerUser).get(protect,admin,getUsers)
 router.route('/login').post(authUser)
-router.route('/clientMessage').patch(presentClientMessage)
+router.route('/clientMessage').post(presentClientMessage)
 router.route('/adminMessage').patch(protect,admin,presentAdminMessage)
 router.route('/verify').post(verifyUser)
 router.route('/profile').get(protect, getUserProfile).put(protect,updateUserProfile)

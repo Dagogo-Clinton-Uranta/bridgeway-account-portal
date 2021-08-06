@@ -6,8 +6,8 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Meta from '../components/Meta'
 import {useDispatch, useSelector} from 'react-redux'
-import {showAccountDetails,showTransactionDetails} from '../actions/accountActions.js'
-
+import {showAccountDetails,showTransactionDetails,showChatDetails} from '../actions/accountActions.js'
+import {clientSaid} from '../actions/userActions.js'
 import FormContainer from '../components/FormContainer.js'
 import bridgeway from '../components/yes.png'
 /*import {PRODUCT_CREATE_REVIEW_RESET} from '../constants/productConstants.js'*/
@@ -21,8 +21,9 @@ const ViewBalanceScreen = ({history,match}) => {
    const [rating ,setRating] = useState(0)
    const [comment ,setComment] = useState('')*/
 
-   
+   /*LOCAL STATES WHICH I USED BELOW */
    const [selectMonth,setSelectMonth] = useState(false)
+   const [clientMessage,setClientMessage] = useState('')
 
   const dispatch = useDispatch()
   
@@ -33,9 +34,13 @@ const ViewBalanceScreen = ({history,match}) => {
   const {account,loading,error} = accountDetails
     
 
+  const chatDetails = useSelector(state => state.chatDetails)
+  const {chat,loading:chatloading,error:chaterror} = chatDetails
+
     const transactionDetails = useSelector(state => state.transactionDetails)
   const {transaction,loading:transactionloading,error:transactionerror} = transactionDetails
-  console.log(transaction)
+  
+  console.log(chat)
   console.log(transactionerror)
  console.log(account)
 
@@ -52,7 +57,7 @@ useEffect(() => {
   
   dispatch(showAccountDetails(accountId))
   dispatch(showTransactionDetails(accountId))
-  
+  dispatch(showChatDetails(accountId))
 
 },[dispatch,accountId])
 
@@ -82,13 +87,15 @@ const selectionHandler = (chosenMonth) => {
 
 
 
-/*const submitHandler =(e) =>{
-  e.preventDefault() //since submit handler is being called inside a form
-  dispatch(createProductReview(match.params.id,{
-    rating,
-    comment //both rating and comment are coming from local/comment state
-  }))
-}*/
+  const submitHandler = (e) => {
+    e.preventDefault()
+    //this is where we want to to call our action to dispatch login
+    setClientMessage('')
+    
+  //dispatch(/*login(email,password)*/)
+   dispatch(clientSaid(clientMessage, accountId))
+   window.alert('Message Sent!')
+}
 
   
 
@@ -223,45 +230,67 @@ return(
 
        
           
-      {/* <center className="mt-4">
+      { <center className="mt-4">
           <Card className='containerBox'>
           {<center className='mt-4'><h3></h3></center>}
        <FormContainer >
-       <center> <h2 className='welcomeFont'>Latest Transaction</h2></center>
-       {transaction && transaction.length > 0 ? 
+       <center> <h2 className='welcomeFont'>Get in touch with us!</h2></center>
+       <center> <p className='instructionSpace'>Have an enquiry? Please send it below. You can also view replies to past messages here. </p></center>
+       
+       <hr className='startOfChat'/>
+       
+       { chat &&
          <div>
-       <center> <p className='instructionSpace'>Your(Latest) Transaction at {transaction && transaction[0].Transactiondate.substring(12,17)}{transaction && transaction[0].Transactiondate.substring(12,17)>='12'?' PM':' AM'} </p><p> on  {transaction && transaction[0].Transactiondate.substring(0,11)} is as follows:</p></center>
-          <hr className='dottedLine'/>
+       
+          
   
-          {transaction && transaction[0].Credit !== '' &&  <>
-           <center>
-         <p className='instructionSpace'>Credit:</p>
-         <h2 className='welcomeFont widthofElements'>₦{ transaction[0].Credit}</h2></center>
-         <p className='instructionSpace transactionSpace'>Details: {transaction[0].Narration}</p>
-          </>}
-
-         {transaction && transaction[0].Debit !== '' &&  <>
-           <center>
-         <p className='instructionSpace transactionSpace'>Debit:</p>
-         <h2 className='welcomeFont widthofElements'>₦{ transaction[0].Debit}</h2></center>
-         <p className='instructionSpace transactionSpace'>Details: {transaction[0].Narration}</p>
-          </>}
-          </div>:
-          <center> <hr className='dottedLine'/> <h2 className='welcomeFont'>{'No Recent Transactions.'}</h2></center>
-        }
-         <hr className='dottedLine2'/>
-        { transaction && transaction.length > 0 &&
-         <div>
+          { chat && chat.previousEnquiry && <>
+            <p className='instructionSpace clientIndent'>Your Previous Message:</p>
+          
+           <p className='instructionSpace clientIndent clientMessage mb-4'>{chat.previousEnquiry}</p>
         
-         <center> <Link to={`/transactionlogs/${accountId}`}> <Button  className='vbButton widthOfElements' variant='primary'>Show Earlier Transactions</Button></Link></center>
-         </div>
          
-         }
+          </>}
 
-        <center> <Link to={`/`}> <Button  className='vbButton widthOfElements' variant='primary'>Go Back</Button></Link></center>
+          {chat && chat.adminAnswer && <>
+           
+           <p className='instructionSpace adminIndent '>Reply from Admin:</p>
+           
+           <p className='instructionSpace adminIndent adminMessage'> {chat.adminAnswer}</p>
+            </>}
+
+
+
+          { chat && chat.enquiry && <>
+            <p className='instructionSpace clientIndent mt-4'>Your Most Recent Message:</p>
+          
+           <p className='instructionSpace clientIndent clientMessage'>{chat.enquiry}</p>
+        
+         
+          </>}
+
+          <hr className='endOfChat'/>
+
+          </div>
+          
+        }
+         
+        
+  <Form onSubmit={submitHandler}>
+         <Form.Group controlId='reply-message'>
+
+<Form.Label>  Send Your Message Below: </Form.Label>
+<Form.Control className='messageBox' as ="textarea" rows={4} placeholder='type message here' value={clientMessage} onChange={(e)=>{setClientMessage(e.target.value)}}></Form.Control>
+
+</Form.Group>
+
+
+<Button type='submit' className='vbButton mt-4 widthOfElements' variant='primary'>Send</Button>
+</Form>
+ 
        </FormContainer>
        </Card>
-       </center>*/}
+       </center>}
           </>
         )}
 
