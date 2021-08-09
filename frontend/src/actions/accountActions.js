@@ -6,6 +6,9 @@ import {
     CHAT_DETAILS_REQUEST,
     CHAT_DETAILS_SUCCESS,
     CHAT_DETAILS_FAILURE,
+    NEW_CHATS_REQUEST,
+    NEW_CHATS_SUCCESS,
+    NEW_CHATS_FAILURE,
     TRANSACTION_DETAILS_REQUEST,
     TRANSACTION_DETAILS_SUCCESS,
     TRANSACTION_DETAILS_FAILURE
@@ -70,7 +73,7 @@ export const showChatDetails = (accountId) => async(dispatch) => {
 
 }
 
-export const showNewChats = () => async(dispatch) => {
+/*export const showNewChats = () => async(dispatch) => {
    
     try{
         dispatch({type:NEW_CHATS_REQUEST})
@@ -86,7 +89,7 @@ export const showNewChats = () => async(dispatch) => {
         error.response.data.message:error.message })
     }
 
-}
+}*/
 
 
 export const switchOffAlert = (accountId) => async(dispatch) => {
