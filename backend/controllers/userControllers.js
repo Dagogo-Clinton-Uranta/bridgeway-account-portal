@@ -4,6 +4,9 @@ import User from '../models/userModel.js'
 import Message from '../models/messageModel.js'
 //I have to make an exception here because the messages are going to this message model in my database and i didn't want to create a new file and route etc.
 
+import Account from '../models/accountModel.js'
+//I have to make an exception here because for the messages, I need the corresponding names from the NUBAN and i didn't want to create a new file and route etc.
+
 import asyncHandler from 'express-async-handler'
 //const asyncHandler = require('express-async-handler')
 
@@ -63,36 +66,43 @@ const authUser = asyncHandler(async (req, res) => {
 //@access Public
 const presentClientMessage = asyncHandler(async (req, res) => {
   res.header("Access-Control-Allow-Origin","*")
-  const {  clientMessage, accountId} =  await req.body
+  const {clientMessage, accountId} =  await req.body
   console.log(req.body)
   
   // i need to reset a particular users message so i have to delete by the id i just recieved, HENCE I NEED ID
   //await User.findByIdAndUpdate({_id:objectId}, { userMessage: clientMessage , adminMessageNotification:true , userMessageNotification:false}, { useFindAndModify: false })
   /*clientMessage has been changed to string before being passed into the database cuz of app.use(express.json)*/
-
+  const cabaEntry = await Account.findOne({},{details:{$elemMatch:{Nubanno:accountId}},createdAt:1,time:1})
+  
+  
   const freshMessage = await Message.find({Nuban:accountId})
-   console.log(freshMessage)
-  if(freshMessage.length === 0){
+   
+  
+   if(freshMessage.length === 0){
 
      await Message.create({
       enquiry:clientMessage,
         previousEnquiry:'',
         adminAnswer:'',
+        senderName:cabaEntry.details[0].Name,
         Nuban:accountId,
         adminMessageNotification:true,
-        userMessageNotification:false
+        userMessageNotification:false,
+        userAlert:false
      })
 
   }
-  else if(freshMessage[0].adminAnswer.length > 1){
-    console.log('theres an admin answer so we can update the previous enquiry and enquiry fields')
+  else {
+    if(freshMessage[0].adminMessageNotification === false){ console.log('theres no admin notif so we can update the previous enquiry and enquiry fields')
    const messagePosition = await Message.findOne({Nuban:accountId})
-    await Message.findOneAndUpdate({Nuban:accountId}, { enquiry: clientMessage , previousEnquiry:messagePosition.enquiry, adminMessageNotification:true , userMessageNotification:false}, { useFindAndModify: false })
+    await Message.findOneAndUpdate({Nuban:accountId}, { enquiry: clientMessage , previousEnquiry:messagePosition.enquiry, adminMessageNotification:true , userMessageNotification:false,userAlert:false}, { useFindAndModify: false })
   }
-   else{
-    console.log('theres no admin answer so we can only update the enquiry field')
-    await Message.findOneAndUpdate({Nuban:accountId}, { enquiry: clientMessage , adminMessageNotification:true , userMessageNotification:false}, { useFindAndModify: false })
+  else{
+    console.log('theres an admin notifso we can only modify our most recent enquiry')
+    await Message.findOneAndUpdate({Nuban:accountId}, { enquiry: clientMessage , adminMessageNotification:true , userMessageNotification:false,userAlert:false}, { useFindAndModify: false })
    }
+}
+   
 
   
   
@@ -105,57 +115,27 @@ const presentClientMessage = asyncHandler(async (req, res) => {
 //@access Private Admin
 const presentAdminMessage = asyncHandler(async (req, res) => {
   res.header("Access-Control-Allow-Origin","*")
-  const { bossMessage, clientId, clientEmail, clientName } = req.body
+  const { adminMessage, accountId } = req.body
   console.log(req.body)
-  const objectId = new mongoose.Types.ObjectId(clientId)
-  // i need to reset a particular users message so i have to delete by the id i just recieved, HENCE I NEED ID
-  await User.findByIdAndUpdate({_id:objectId}, { adminMessage:bossMessage, adminMessageNotification:false , userMessageNotification:true}, { useFindAndModify: false })
  
 
+  const freshMessage = await Message.find({Nuban:accountId})
 
-  //what we will use to generate a dynamic access token
-  //I did this above earlier, am i covered by function scope-yes
-  /*oAuth75Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN })
-  const accessToken = await oAuth75Client.getAccessToken().token
+  
+   
+   if( freshMessage[0].adminMessageNotification === true){
+    
+    if(freshMessage[0].adminAnswer.length < 1){
+      await Message.findOneAndUpdate({Nuban:accountId}, { adminAnswer: adminMessage , adminMessageNotification:false , userMessageNotification:true, userAlert:true}, { useFindAndModify: false })}
 
-  //setup of email for nodemailer
-  let transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    service: 'gmail',
-    secure: true,
-    debug: false,
-    logger: true,
-    auth: {
-      type: 'OAuth2',
-      user: process.env.EMAIL,
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      refreshToken: process.env.REFRESH_TOKEN,
-      accessToken: accessToken
-
-    }
-  })
-  //what i actually want to send to the user/client 
-  let mailOptions = {
-    from: process.env.EMAIL,
-    to: clientEmail ,
-    cc: 'dagogouranta@gmail.com',
-    subject: `Message from bridgeway customer service to ${clientName}`, 
-    text: ` Dear ${clientName}, ${bossMessage}` 
+    else {await Message.findOneAndUpdate({Nuban:accountId}, { adminAnswer: adminMessage ,previousAdminAnswer:freshMessage[0].adminAnswer, adminMessageNotification:false , userMessageNotification:true,userAlert:true}, { useFindAndModify: false })}
+   
+  
+  }else{
+    await Message.findOneAndUpdate({Nuban:accountId}, { adminAnswer: adminMessage}, { useFindAndModify: false })
   }
 
-  //actually sending the mail
-  transporter.sendMail(mailOptions, function (err, data) {
-    if (err) {
-      console.log('Error Occurs:', err);
-    } else {
-      console.log('Email sent!');
-    }
-
-  })*/
-
-  res.status(201)
+  res.status(200)
 })
 
  //@desc  Verify a user before payment

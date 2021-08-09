@@ -69,3 +69,37 @@ export const showChatDetails = (accountId) => async(dispatch) => {
     }
 
 }
+
+export const showNewChats = () => async(dispatch) => {
+   
+    try{
+        dispatch({type:NEW_CHATS_REQUEST})
+
+        const {data} = await axios.get(`/api/accounts/newmessagelist`)
+
+        dispatch({type:NEW_CHATS_SUCCESS,
+                      payload:data})
+    }
+    catch(error){
+        dispatch({type:NEW_CHATS_FAILURE,
+        payload:error.response && error.response.data.message?
+        error.response.data.message:error.message })
+    }
+
+}
+
+
+export const switchOffAlert = (accountId) => async(dispatch) => {
+   //dispatch in the bracket of async is not being used here, whereas it would normally dispatch action types and payloads
+    
+
+    const config = {
+        headers:{
+          'Content-Type':'application/json'
+        }
+      }
+    //using a request body cuz it's a POST request i guess
+
+       await axios.post('/api/accounts/messages',{accountId},config)
+
+ }

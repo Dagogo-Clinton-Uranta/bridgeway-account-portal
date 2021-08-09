@@ -89,7 +89,7 @@ export const clientSaid = (clientMessage,accountId) => async(dispatch) => {
    }
 }
 
-export const adminSaid = (bossMessage, clientId,clientEmail,clientName) => async(dispatch) => {
+export const adminSaid = (adminMessage, accountId) => async(dispatch) => {
   try{
     dispatch({type: ADMIN_SEND_REQUEST}) /* WHY DO WE EVEN HAVE this reducer, when we dont call it from store */
     
@@ -99,7 +99,7 @@ export const adminSaid = (bossMessage, clientId,clientEmail,clientName) => async
       }
     }
     
-    const {data} = await axios.patch('/admin/user/:id/api/users/adminMessage',{bossMessage, clientId,clientEmail,clientName},config)
+    const {data} = await axios.post(/*/admin/user/:id*/'/api/users/adminMessage',{adminMessage, accountId},config)
     
     dispatch({type:ADMIN_SEND_SUCCESS,
     payload:data})

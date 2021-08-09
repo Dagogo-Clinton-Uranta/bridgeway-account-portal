@@ -6,7 +6,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Meta from '../components/Meta'
 import {useDispatch, useSelector} from 'react-redux'
-import {showAccountDetails,showTransactionDetails,showChatDetails} from '../actions/accountActions.js'
+import {showAccountDetails,showTransactionDetails,showChatDetails,switchOffAlert} from '../actions/accountActions.js'
 import {clientSaid} from '../actions/userActions.js'
 import FormContainer from '../components/FormContainer.js'
 import bridgeway from '../components/yes.png'
@@ -97,7 +97,10 @@ const selectionHandler = (chosenMonth) => {
    window.alert('Message Sent!')
 }
 
-  
+ const alertOffHandler =  (e) => {
+  dispatch(switchOffAlert(accountId))
+
+ } 
 
       return(
         <>
@@ -125,6 +128,7 @@ const selectionHandler = (chosenMonth) => {
           <Card className='containerBox'>
           <center><img className='bridgeLogo' src={bridgeway} alt={'the logo of bridgeway bank'} /></center>
        <FormContainer >
+       {chat && chat.userAlert && <h4 className='alertFont'>New Message From Bridgeway!(see below)</h4>}
        <center> <h2 className='welcomeFont'>{account && account.details[0].Name}</h2></center>
        <center> <p className='instructionSpace'>Your balance on {account && account.createdAt.substring(0,10)} at {account && account.time} is:</p></center>
           <hr className='dottedLine'/>
@@ -231,7 +235,7 @@ return(
        
           
       { <center className="mt-4">
-          <Card className='containerBox'>
+          <Card className='containerBox' onMouseEnter={alertOffHandler}>
           {<center className='mt-4'><h3></h3></center>}
        <FormContainer >
        <center> <h2 className='welcomeFont'>Get in touch with us!</h2></center>
@@ -252,12 +256,21 @@ return(
          
           </>}
 
-          {chat && chat.adminAnswer && <>
+          {chat && chat.previousAdminAnswer && chat.userMessageNotification ? <>
            
-           <p className='instructionSpace adminIndent '>Reply from Admin:</p>
+           <p className='instructionSpace adminIndent '>Previous Reply:</p>
            
-           <p className='instructionSpace adminIndent adminMessage'> {chat.adminAnswer}</p>
-            </>}
+           <p className='instructionSpace adminIndent adminMessage'> {chat.previousAdminAnswer}</p>
+          </>:(
+            chat && chat.adminAnswer &&!chat.userMessageNotification  &&
+            <>
+            <p className='instructionSpace adminIndent '>{chat && chat.adminMessageNotification? 'Previous Reply:':'Reply from Admin'}</p>
+           
+            <p className='instructionSpace adminIndent adminMessage'> {chat.adminAnswer}</p>
+            </>
+
+          )
+          }
 
 
 
@@ -268,6 +281,18 @@ return(
         
          
           </>}
+
+
+          {chat && chat.adminAnswer && chat.userMessageNotification && <>
+           
+           <p className='instructionSpace adminIndent '> New Reply:</p>
+           
+           <p className='instructionSpace adminIndent adminMessage'> {chat.adminAnswer}</p>
+            </>}
+
+           
+
+
 
           <hr className='endOfChat'/>
 

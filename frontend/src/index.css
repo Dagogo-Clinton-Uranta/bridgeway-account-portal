@@ -13,6 +13,63 @@
   }
 }
 
+
+@keyframes alert {
+  0% {
+    
+    opacity: 0%;
+  }
+
+  10% {
+    
+    opacity: 100%;
+  }
+
+  20% {
+    
+    opacity: 0%;
+  }
+
+  30% {
+    
+    opacity: 100%;
+  }
+
+  40% {
+    
+    opacity: 0%;
+  }
+
+  50% {
+    
+    opacity: 100%;
+  }
+
+  60% {
+    
+    opacity: 0%;
+  }
+
+
+  70% {
+    
+    opacity: 100%;
+  }
+
+  90% {
+    
+    opacity: 0%;
+  }
+
+  100% {
+    
+    opacity: 100%;
+  }
+}
+
+
+
+
 main {
   min-height: 80vh;
 }
@@ -94,7 +151,7 @@ h2 {
   border: 0.05px dashed black;
 }
 
-/*THE CHAT FEATURE*/
+/*THE CHAT FEATURE (END)*/
 
 
 .widthOfElements{
@@ -124,7 +181,7 @@ h2 {
 
 
 
-/* WELCOME TO BRIDGEWAY KIDS*/
+/* WELCOME TO BRIDGEWAY KIDS(the card that users are greeted with)*/
 .welcomeFont {
    font-family: 'Amatic SC', cursive;
   font-size: 2.8rem;
@@ -140,6 +197,17 @@ h2 {
  animation: slideIn 800ms 2000ms;
  margin-top:3rem;
  margin-bottom: 2rem;
+ 
+}
+
+.alertFont {
+  font-family: 'Amatic SC', cursive;
+ font-size: 1.9rem;
+ color:red;
+ animation: alert 8000ms 0ms;
+ margin-top:1rem;
+ margin-bottom: 2rem;
+ 
  
 }
 

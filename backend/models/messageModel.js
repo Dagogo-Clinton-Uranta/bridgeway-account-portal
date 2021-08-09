@@ -9,9 +9,12 @@ const messageSchema =  mongoose.Schema({
         enquiry:{type: String},
         previousEnquiry:{type: String },
         adminAnswer:{type: String },
+        previousAdminAnswer:{type: String },
+        senderName:{type: String },
         Nuban:{type: String },
         adminMessageNotification:{type:Boolean, default:false },
-        userMessageNotification:{type: Boolean, default:false }
+        userMessageNotification:{type: Boolean, default:false },
+        userAlert:{type: Boolean, default:false }
         
         
         /* maybe an address entry for merchants ? */
