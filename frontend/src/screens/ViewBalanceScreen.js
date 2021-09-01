@@ -88,13 +88,13 @@ const selectionHandler = (chosenMonth) => {
 
 
   const submitHandler = (e) => {
-    e.preventDefault()
-    //this is where we want to to call our action to dispatch login
-    setClientMessage('')
     
-  //dispatch(/*login(email,password)*/)
+    if(clientMessage===''){
+      window.alert('You just tried to send an empty message, please ensure you have typed something in before sending')
+    }else{
+    setClientMessage('')
    dispatch(clientSaid(clientMessage, accountId))
-   window.alert('Message Sent!')
+   window.alert('Message Sent!, Please check back within 24 hours for a reply')}
 }
 
  const alertOffHandler =  (e) => {
@@ -156,7 +156,7 @@ const selectionHandler = (chosenMonth) => {
            <th>DATE</th>
            <th>TIME</th>
            <th>TYPE</th>
-           {<th>AMOUNT(₦)</th> }{/*AS PER TOTAL PRICE*/}
+           {<th>AMOUNT(₦)</th> }
            <th>DESCRIPTION</th>
            
          </tr>
@@ -239,7 +239,7 @@ return(
           {<center className='mt-4'><h3></h3></center>}
        <FormContainer >
        <center> <h2 className='welcomeFont'>Get in touch with us!</h2></center>
-       <center> <p className='instructionSpace'>Have an enquiry? Please send it below. You can also view replies to past messages here. </p></center>
+       <center> <p className='instructionSpace'>Have an enquiry? Please send it below, and we will reply you within 24 hours time. You can also view replies to past messages here. </p></center>
        
        <hr className='startOfChat'/>
        

@@ -75,7 +75,7 @@ const importData = async()=> {
       /*await Account.deleteMany() you cant be deleting entries anyhow now,it was only for test purposes, until you confirm with downstairs
       await Account.create({details:[]})
       await Account.findOneAndUpdate({details:[]},{details:accounts(),time:showTime()})*/
-      /*await Message.deleteMany()*/
+      await Message.deleteMany()
        
       /*await Transaction.deleteMany()*/
       /*await Transaction.insertMany(transactions())*/ // WARNING:IF YOU RUN DELETE, YOU'LL CLEAR THE WHOLE DATABASE OF TRANSACTIONS  AND THEN ONLY INSERT ONE DAY'S WORTH OF TRANSACTIONS, SO BE CAREFUL
