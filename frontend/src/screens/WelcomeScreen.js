@@ -43,7 +43,7 @@ const WelcomeScreen = ({location, history}) => { //he is taking location & histo
         <Card className='containerBox'>
           <center><img className='bridgeLogo' src={bridgeway} alt={'the logo of bridgeway bank'} /></center>
        <FormContainer >
-       <center> <h2 className='welcomeFont'>Welcome to Bridgeway Future Leaders Portal!</h2></center>
+       <center> <h2 className='welcomeFont'>Welcome to Bridgeway's Portal!</h2></center>
         {/*error && <Message variant='danger'>{error}</Message>*/}
         {/*loading && <Loader/>*/}
          <center><p className='instructionSpace'>Instructions:</p>

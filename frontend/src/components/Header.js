@@ -71,7 +71,7 @@ userInfo.newMessages = users.some((user)=>{user.userMessageNotification % 2===0}
   <Container>
   <LinkContainer to="/">
   {/*why cant we wrap this in a link tag?*/}
-  <Navbar.Brand ><img className='bridgeNavLogo'  src={bridgeway} alt={'the logo of bridgeway bank'} /></Navbar.Brand>
+  <Navbar.Brand ><img className='bridgeNavLogo'  src={bridgeway} alt={'the logo of bridgeway microfinancebank'} /></Navbar.Brand>
   </LinkContainer>
 
   <Navbar.Toggle aria-controls="basic-navbar-nav" />

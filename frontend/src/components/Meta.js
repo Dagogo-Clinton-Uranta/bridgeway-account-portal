@@ -17,7 +17,7 @@ const Meta = ({title, description,keywords}) => {
 
 }
   Meta.defaultProps ={
-    title:'Bridgeway-Kids',
+    title:'Bridgeway-View',
     description:'Website for bridgeway customers to check their accounts',
     keywords:'kiddies, kids,savings, account'
   }

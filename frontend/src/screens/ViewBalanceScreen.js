@@ -88,13 +88,13 @@ const selectionHandler = (chosenMonth) => {
 
 
   const submitHandler = (e) => {
-    e.preventDefault()
-    //this is where we want to to call our action to dispatch login
-    setClientMessage('')
     
-  //dispatch(/*login(email,password)*/)
+    if(clientMessage===''){
+      window.alert('You just tried to send an empty message, please ensure you have typed something in before sending')
+    }else{
+    setClientMessage('')
    dispatch(clientSaid(clientMessage, accountId))
-   window.alert('Message Sent!')
+   window.alert('Message Sent!, Please check back within 24 hours for a reply')}
 }
 
  const alertOffHandler =  (e) => {
@@ -105,7 +105,7 @@ const selectionHandler = (chosenMonth) => {
       return(
         <>
        
-        {loading ? <Loader/>:account && account.details.length < 1 ?<>
+        {loading ? <Loader/>:account  && account.details.length < 1 ?<>
           <center>
           <Card className='containerBox'>
           <center><img className='bridgeLogo' src={bridgeway} alt={'the logo of bridgeway bank'} /></center>
@@ -121,7 +121,7 @@ const selectionHandler = (chosenMonth) => {
         
         </>:(
           <>
-          <Meta title={'Bridgeway Future Leaders'}/>
+          <Meta title={'Bridgeway Portal'}/>
           
           
             <center>
@@ -140,10 +140,11 @@ const selectionHandler = (chosenMonth) => {
          <hr className='dottedLine2'/>
 
          <center> <h2 className='welcomeFont'>Latest Transactions</h2></center>
-         {!transaction?<center>  <hr className='dottedLine2'/><h4 className='welcomeFont'>No Recent transactions.</h4></center>:
-         
+         { transactionloading ? <Loader/>
+         /*!transaction?<center>  <hr className='dottedLine2'/><h4 className='welcomeFont'>No Recent transactions.</h4></center>*/:
+             
          (
-         transaction.length === 0 ? <center> <h4 className='welcomeFont'>No Recent transactions.</h4></center>:
+         transaction && transaction.length === 0 ? <center> <h4 className='welcomeFont'>No Recent transactions.</h4></center>:
          <>
          <center> <p className='instructionSpace'>Your Latest Transactions  </p><p>( on {transaction && transaction[0].Transactiondate.substring(0,11)}) are as follows:</p></center>
           
@@ -156,14 +157,14 @@ const selectionHandler = (chosenMonth) => {
            <th>DATE</th>
            <th>TIME</th>
            <th>TYPE</th>
-           {<th>AMOUNT(₦)</th> }{/*AS PER TOTAL PRICE*/}
+           {<th>AMOUNT(₦)</th> }
            <th>DESCRIPTION</th>
            
          </tr>
          </thead>
          <tbody>
 
-{transaction.map((customer,index) => {
+{transaction && transaction.map((customer,index) => {
 return(
 
   
@@ -239,7 +240,7 @@ return(
           {<center className='mt-4'><h3></h3></center>}
        <FormContainer >
        <center> <h2 className='welcomeFont'>Get in touch with us!</h2></center>
-       <center> <p className='instructionSpace'>Have an enquiry? Please send it below. You can also view replies to past messages here. </p></center>
+       <center> <p className='instructionSpace'>Have an enquiry? Please send it below, and we will reply you within 24 hours time. You can also view replies to past messages here. </p></center>
        
        <hr className='startOfChat'/>
        

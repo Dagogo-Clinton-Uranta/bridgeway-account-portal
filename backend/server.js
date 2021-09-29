@@ -23,7 +23,7 @@ import {notFound,errorHandler} from './Middleware/errorMiddleware.js'
 import connectDB from './config/db.js'
 //const connectDB = require('./config/db.js')
 
-import productRoutes from './routes/productRoutes.js'
+//import productRoutes from './routes/productRoutes.js'
 //const productRoutes =require('./routes/productRoutes.js')
 
 import userRoutes from './routes/userRoutes.js'
@@ -57,7 +57,7 @@ if(process.env.NODE_ENV === 'development'){app.use(morgan('dev'))} //I prefer to
 
 
 /*app.use(cors())*/
-app.use('/api/products',productRoutes)
+/*app.use('/api/products',productRoutes)*/
 app.use('/api/users',userRoutes)
 app.use('/api/orders',orderRoutes)
 app.use('/api/upload',uploadRoutes)

@@ -80,7 +80,7 @@ useEffect(() => {
         
         </>:(
           <>
-          <Meta title={'Bridgeway Future Leaders'}/>
+          <Meta title={'Bridgeway Portal'}/>
           
           
            {/* <center>
@@ -162,8 +162,9 @@ useEffect(() => {
             {/*<Card className='containerBox'>*/}
          {/* <center><img className='bridgeLogo' src={bridgeway} alt={'the logo of bridgeway bank'} /></center> */}         
           <FormContainer >
-         <center> <h2 className='welcomeFont'>{'Please refresh the screen.'}</h2></center>
-          
+          <center><p></p>{/*this empty paragraph is for space, use CSS later*/}</center>
+         <center> <Loader/>{/*<h2 className='welcomeFont'>{'Please refresh the screen.'}</h2>* <-- THE FORMER THING THAT WAS HERE */}</center>
+         <center> <p></p>{/*this empty paragraph is for space, use CSS later*/}</center>
           {/*<center> <Link to={`/`}> <Button  className='vbButton widthOfElements' variant='primary'>Go Back</Button></Link></center>*/}
          </FormContainer>
          {/*</Card>*/}

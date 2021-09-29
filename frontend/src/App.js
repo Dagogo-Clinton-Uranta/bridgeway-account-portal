@@ -9,22 +9,7 @@ import LoginScreen from './screens/LoginScreen.js'
 import ViewBalanceScreen from './screens/ViewBalanceScreen.js'
 import UpdateCabaScreen from './screens/UpdateCabaScreen.js'
 import TransactionLogsScreen from './screens/TransactionLogsScreen.js'
-/*import HomeScreen from './screens/HomeScreen.js'
-import ProductScreen from './screens/ProductScreen.js'
-import CartScreen from './screens/CartScreen.js'
-import RegisterScreen from './screens/RegisterScreen.js'
-import ProfileScreen from './screens/ProfileScreen.js'
-import ShippingScreen from './screens/ShippingScreen.js'
-import PaymentScreen from './screens/PaymentScreen.js'
-import PlaceOrderScreen from './screens/PlaceOrderScreen.js'
-import OrderScreen from './screens/OrderScreen.js'
-import OrderListScreen from './screens/OrderListScreen.js'
-import CommunicationScreen from './screens/CommunicationScreen.js'
-import AdminComScreen from './screens/AdminComScreen.js'
-import UserListScreen from './screens/UserListScreen.js'
-import UserEditScreen from './screens/UserEditScreen.js'
-import ProductListScreen from './screens/ProductListScreen.js'
-*/
+
 
 const App = () => {
 
@@ -40,29 +25,7 @@ const App = () => {
        < Route path='/login' component={LoginScreen}/>
        {/*< Route path='/updatecaba' component={UpdateCabaScreen}/>*/}
        < Route path='/transactionlogs/:id/month/:month/year/:year' component={TransactionLogsScreen}/>
-       {/*< Route path='/order/:id' component={OrderScreen}/>
-       < Route path='/shipping' component={ShippingScreen}/>
-       < Route path='/payment' component={PaymentScreen}/>
-       < Route path='/placeorder' component={PlaceOrderScreen}/>
-       
-       < Route path='/register' component={RegisterScreen}/>
-       < Route path='/profile' component={ProfileScreen}/>
-       < Route path= '/communications' component={CommunicationScreen} />
-       
-        < Route path='/product/:id' component={ProductScreen}/> 
-        < Route path='/cart/:id?' component={CartScreen}/>
-        < Route path='/admin/userlist' component={UserListScreen}/>
-        < Route path='/admin/user/:id/communications' component={AdminComScreen}/>
-        < Route path='/admin/user/:id/edit' component={UserEditScreen}/>
-        < Route path='/admin/productlist'  exact component={ProductListScreen}/>
-        < Route path='/admin/productlist/:pageNumber'  exact component={ProductListScreen}/>
-        < Route path='/admin/product/:id/edit' component={ProductEditScreen}/>
-        < Route path='/admin/orderlist' component={OrderListScreen}/>
-        < Route path='/search/:keyword' component={HomeScreen} exact/>
-        < Route path='/page/:pageNumber'exact component={HomeScreen}/>
-        < Route path='/search/:keyword/page/:pageNumber'  exact component={HomeScreen}/>
-        < Route path='/'exact component={HomeScreen}/>*/}
-        
+      
        
        </Container>
       </main>
