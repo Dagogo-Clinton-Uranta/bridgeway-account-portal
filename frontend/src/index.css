@@ -343,3 +343,35 @@ h2 {
   color:black;
   font-weight:900;
 }
+
+/*the bridgewaymfb button*/
+
+.parentFlex {
+  display: flex;
+  justify-content: start;
+  padding-left:6%;
+  }
+  
+  @media screen and (max-width: 480px) {
+   
+.parentFlex {
+  display: flex;
+  justify-content: center;
+  
+  }
+  }
+  
+  .mfb {
+  width:140px;
+  margin-top: 40px;
+  border-radius:5px;
+  font-weight: bold;
+  
+  }
+  
+  .arrowStyle {
+    font-size: 90px;
+    color:red;
+    margin:-20px;
+    font-weight: bolder;
+  }

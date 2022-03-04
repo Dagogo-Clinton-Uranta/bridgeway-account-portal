@@ -41,14 +41,22 @@ const WelcomeScreen = ({location, history}) => { //he is taking location & histo
     return (
        <center>
         <Card className='containerBox'>
+
+        <div className='parentFlex'>
+        
+<a href='https://www.bridgewaymfb.com/'> <Button className='mfb' variant='primary'> <span className="arrowStyle">&larr; </span> To Main Page</Button></a>
+     </div>
+
+
+
           <center><img className='bridgeLogo' src={bridgeway} alt={'the logo of bridgeway bank'} /></center>
        <FormContainer >
-       <center> <h2 className='welcomeFont'>Welcome to Bridgeway's Portal!</h2></center>
+       <center> <h2 className='welcomeFont'>Welcome to Bridgeway's Account Portal!</h2></center>
         {/*error && <Message variant='danger'>{error}</Message>*/}
         {/*loading && <Loader/>*/}
          <center><p className='instructionSpace'>Instructions:</p>
          <p className='widthOfElements'>Please, type in your account number below, and click 'view balance' to see your current balance for the day. Please make sure to enter all digits correctly!</p> 
-         <p className='widthOfElements'> If you withdraw or deposit money, please come back tommorrow to see any changes to your balance. </p></center>
+         <p className='widthOfElements'> If you withdraw or deposit money, please come back tomorrow to see any changes to your balance. </p></center>
         <center>
        <Form >
          <Form.Group controlId='accountNumber'>
