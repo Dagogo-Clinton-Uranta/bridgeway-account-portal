@@ -110,7 +110,7 @@ const selectionHandler = (chosenMonth) => {
           <Card className='containerBox'>
           <center><img className='bridgeLogo' src={bridgeway} alt={'the logo of bridgeway bank'} /></center>
        <FormContainer >
-       <center> <h2 className='welcomeFont'>{'The account you are looking for does not exist,please make sure to type in your account details correctly.'}</h2></center>
+       <center> <h2 className='welcomeFont'>{'System Error, Please bear with us.'}</h2></center>
         
         <center> <Link to={`/`}> <Button  className='vbButton widthOfElements' variant='primary'>Go Back</Button></Link></center>
        </FormContainer>

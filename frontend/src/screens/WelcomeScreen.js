@@ -13,6 +13,7 @@ import bridgeway from '../components/yes.png'
 
 const WelcomeScreen = ({location, history}) => { //he is taking location & history out of the props, normally it is props.location
   const [accountNumber,setAccountNumber] = useState('')  //component level state right here, not application level state
+  const [phoneNumber,setPhoneNumber] = useState('')
   /*const [password,setPassword] = useState('')
   const dispatch = useDispatch() 
   const userLogin = useSelector(state => state.userLogin);
@@ -56,7 +57,12 @@ const WelcomeScreen = ({location, history}) => { //he is taking location & histo
         {/*loading && <Loader/>*/}
          <center><p className='instructionSpace'>Instructions:</p>
          <p className='widthOfElements'>Please, type in your account number below, and click 'view balance' to see your current balance for the day. Please make sure to enter all digits correctly!</p> 
-         <p className='widthOfElements'> If you withdraw or deposit money, please come back tomorrow to see any changes to your balance. </p></center>
+         <p className='widthOfElements'> If you withdraw or deposit money, please come back in a few hours to see any changes to your balance. </p></center>
+        
+
+        <center><p className='instructionSpace'>Disclaimer:</p>
+         <p className='widthOfElements'>These balances may not always reflective of immediate transactions,particularly atm transactions</p> 
+         <p className='widthOfElements'> If you make an atm transaction please wait a while before the balance reflects </p></center>
         <center>
        <Form >
          <Form.Group controlId='accountNumber'>
@@ -65,9 +71,18 @@ const WelcomeScreen = ({location, history}) => { //he is taking location & histo
           <Form.Control className='accountInput widthOfElements' type='input' autocomplete="off" placeholder="enter your account number" value={accountNumber} onChange={(e)=>{setAccountNumber(e.target.value)}}></Form.Control>
            {/*the value of form control is form control from the state. */}
          </Form.Group>
+
+         <Form.Group controlId='accountNumber'>
+
+          <Form.Label className='accountLabel2' >  Phone Number: </Form.Label>
+          <Form.Control className='accountInput widthOfElements' type='input' autocomplete="off" placeholder="enter your phone number" value={phoneNumber} onChange={(e)=>{setPhoneNumber(e.target.value)}}></Form.Control>
+           {/*the value of form control is form control from the state. */}
+         </Form.Group>
+
+         
    
 
-        <center> <Link to={accountNumber===''?`/viewbalance/0`:`/viewbalance/${accountNumber}`}> <Button  className='vbButton widthOfElements' variant='primary'>View Balance</Button></Link></center>
+        <center> <Link to={accountNumber===''?`/viewbalance/0`:`/viewbalance/${accountNumber}?phoneNumber=${phoneNumber}`}> <Button  className='vbButton widthOfElements' variant='primary'>View Balance</Button></Link></center>
         </Form>         
          </center>
        </FormContainer>

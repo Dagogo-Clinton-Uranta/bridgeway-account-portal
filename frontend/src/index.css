@@ -244,6 +244,11 @@ h2 {
 
 }
 
+.accountLabel2 {
+  margin-top: 1rem;
+
+}
+
 .accountInput { 
   border:2px black;
    border-style:dashed;

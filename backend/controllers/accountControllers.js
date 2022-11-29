@@ -10,7 +10,7 @@ import accounts from '../../uploads/accounts.js'
 
 const getAccountByAccountNumber = asyncHandler(async (req,res) => {
     
-   const account = await Account.findOne({},{details:{$elemMatch:{Nubanno:req.params.accountId}},createdAt:1,time:1}/*,{createdAt:1}*/,{ useFindAndModify: false})  
+   const account = await Account.findOne({},{details:{$elemMatch:{Nubanno:req.params.accountId}},createdAt:1,time:1}/*,{createdAt:1}*/,{ useFindAndModify: false}) /*get elematch to match phone number as well */
     
    /*console.log(account)*/
  
