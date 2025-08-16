@@ -9,14 +9,14 @@ import express from 'express'
 import multer from 'multer'
 //const multer =require('multer')
 
-import transactions from '../../uploads/transactions.js'
+import transactions from '../uploads/transactions.js'
 
 import Account from '../models/accountModel.js' 
 import Transaction from '../models/transactionModel.js' 
 import asyncHandler from 'express-async-handler'
 import mongoose from 'mongoose'
 
-import accounts from '../../uploads/accounts.js'
+import accounts from '../uploads/accounts.js'
 
 
 
@@ -51,7 +51,7 @@ function showTime(){
 
 
 const deleteCaba = (req,res,next) => {
-  try {fs.unlinkSync('./uploads/CABA.xlsx')
+  try {fs.unlinkSync('./backend/uploads/CABA.xlsx')
   console.log("file deleted!")
   next()
 }    
@@ -61,7 +61,7 @@ const deleteCaba = (req,res,next) => {
 }
 
 const deleteCallOver = (req,res,next) => {
-  try {fs.unlinkSync('./uploads/CallOver_Report.xlsx')
+  try {fs.unlinkSync('./backend/uploads/CallOver_Report.xlsx')
   console.log("file deleted!")
   next()
 }    
@@ -77,7 +77,7 @@ const router = express.Router()
 
 const storage = multer.diskStorage({
   destination:function(req,file,cb){
-     cb(null,'./uploads')
+     cb(null,'./backend/uploads')
   },
   filename:function(req,file,cb){
      cb(null,`${'CABA'}${path.extname(file.originalname)}`)
@@ -87,7 +87,7 @@ const storage = multer.diskStorage({
 
 const storage2 = multer.diskStorage({
   destination:function(req,file,cb){
-     cb(null,'./uploads')
+     cb(null,'./backend/uploads')
   },
   filename:function(req,file,cb){
      cb(null,`${'CallOver_Report'}${path.extname(file.originalname)}`)

@@ -1,7 +1,7 @@
 import Transaction from '../models/transactionModel.js' 
 import asyncHandler from 'express-async-handler'
 import mongoose from 'mongoose'
-import accounts from '../../uploads/accounts.js'
+import accounts from '../uploads/accounts.js'
 
 
 //@desc gets an individual user's account information
