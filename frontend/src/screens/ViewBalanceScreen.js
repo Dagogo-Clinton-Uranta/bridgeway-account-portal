@@ -32,7 +32,7 @@ const ViewBalanceScreen = ({history,match}) => {
 
   const accountDetails = useSelector(state => state.accountDetails)
   const {account,loading,error} = accountDetails
-    
+    console.log(account)
 
   const chatDetails = useSelector(state => state.chatDetails)
   const {chat,loading:chatloading,error:chaterror} = chatDetails
@@ -110,7 +110,7 @@ const selectionHandler = (chosenMonth) => {
           <Card className='containerBox'>
           <center><img className='bridgeLogo' src={bridgeway} alt={'the logo of bridgeway bank'} /></center>
        <FormContainer >
-       <center> <h2 className='welcomeFont'>{'System Error, Please bear with us.'}</h2></center>
+       <center> <h2 className='welcomeFont'>{'System Error, Please bear with us. In the mean time, please check your details are entered correctly.'}</h2></center>
         
         <center> <Link to={`/`}> <Button  className='vbButton widthOfElements' variant='primary'>Go Back</Button></Link></center>
        </FormContainer>
