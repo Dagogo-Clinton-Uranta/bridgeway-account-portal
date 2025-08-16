@@ -6,7 +6,7 @@ node_modules/
 
 #production
 /frontend/build
-
+.env
 
 #testing
 /coverage
