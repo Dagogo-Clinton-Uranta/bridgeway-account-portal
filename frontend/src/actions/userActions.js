@@ -37,6 +37,8 @@
        } from '../constants/UserConstants.js'
 
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants.js'
+import baseUrl from 'src/actions/baseUrl'
+
 
 export const login = (email,password) => async(dispatch) =>{
    //redux thunk was used just now in the form of async (dispatch) above
@@ -49,7 +51,7 @@ export const login = (email,password) => async(dispatch) =>{
         'Content-Type':'application/json'
       }
     }
-    const {data} = await axios.post('/api/users/login/',{email,password},config)
+    const {data} = await axios.post(`${baseUrl}/api/users/login/`,{email,password},config)
     /*does axios return more than one variable, this one that we're destructuring, and takin data?*/
 
     dispatch({
@@ -76,7 +78,7 @@ export const clientSaid = (clientMessage,accountId) => async(dispatch) => {
         }
       }
 
-      const {data} = await axios.post('/api/users/clientMessage',{clientMessage,accountId},config)
+      const {data} = await axios.post(`${baseUrl}/api/users/clientMessage`,{clientMessage,accountId},config)
       
       dispatch({type:USER_SEND_SUCCESS,
       payload:data})
@@ -99,7 +101,7 @@ export const adminSaid = (adminMessage, accountId) => async(dispatch) => {
       }
     }
     
-    const {data} = await axios.post(/*/admin/user/:id*/'/api/users/adminMessage',{adminMessage, accountId},config)
+    const {data} = await axios.post(/*/admin/user/:id*/`${baseUrl}/api/users/adminMessage`,{adminMessage, accountId},config)
     
     dispatch({type:ADMIN_SEND_SUCCESS,
     payload:data})
@@ -122,7 +124,7 @@ export const answerVerify = (clientId, personalIdQuery,personalIdAnswer) => asyn
       }
     }
 
-    const {data} = await axios.post('api/users/verify',{clientId,personalIdQuery,personalIdAnswer},config)
+    const {data} = await axios.post(`${baseUrl}/api/users/verify`,{clientId,personalIdQuery,personalIdAnswer},config)
       
     /*can you send stuff in the second argument of your get request? - no, thats not the agreed upon convention */
     dispatch({type:USER_VERIFY_SUCCESS,
@@ -162,7 +164,7 @@ export const register = (name,email,password,momFirstName,shoeSize,closestFriend
         'Content-Type':'application/json'
       }
     }
-    const {data} = await axios.post('/api/users',{name,email,password,momFirstName,shoeSize,closestFriend,childhoodStreet, firstEmployment,pickupAddress,isMerchant},config)
+    const {data} = await axios.post(`${baseUrl}/api/users`,{name,email,password,momFirstName,shoeSize,closestFriend,childhoodStreet, firstEmployment,pickupAddress,isMerchant},config)
     //i'm gonna take a stab here and say that the third argument for axios is for setting header property
 
     dispatch({
@@ -197,7 +199,7 @@ export const getUserDetails = (id) => async (dispatch,getState) => {
         Authorization:`Bearer ${userInfo.token}`
       }
     }
-    const {data} = await axios.get(`/api/users/${id}`,config)
+    const {data} = await axios.get(`${baseUrl}/api/users/${id}`,config)
     
 
     dispatch({
@@ -224,7 +226,7 @@ export const updateUserProfile  = (user /*the entire user object*/) => async(dis
         Authorization:`Bearer ${userInfo.token}`
       }
     }
-    const {data} = await axios.put(`/api/users/profile`,user,config)
+    const {data} = await axios.put(`${baseUrl}/api/users/profile`,user,config)
     //i'm gonna take a stab here and say that the third argument for axios is for setting header property
 
     dispatch({
@@ -254,7 +256,7 @@ export const listUsers  = () => async (dispatch,getState)=> {
         Authorization:`Bearer ${userInfo.token}`
       }
     }
-    const {data} = await axios.get(`/api/users`,config)
+    const {data} = await axios.get(`${baseUrl}/api/users`,config)
     //i'm gonna take a stab here and say that the third argument for axios is for setting header property
 
     dispatch({
@@ -283,7 +285,7 @@ export const deleteUser  = (id) => async (dispatch,getState)=> {
         Authorization:`Bearer ${userInfo.token}`
       }
     }
-    await axios.delete(`/api/users/${id}`,config)
+    await axios.delete(`${baseUrl}/api/users/${id}`,config)
     //i'm gonna take a stab here and say that the third argument for axios is for setting header property
 
     dispatch({
@@ -311,7 +313,7 @@ export const updateUser  = (user) => async (dispatch,getState)=> {
         Authorization:`Bearer ${userInfo.token}`
       }
     }
-    const{data} = await axios.put(`/api/users/${user._id}`, user,config)
+    const{data} = await axios.put(`${baseUrl}/api/users/${user._id}`, user,config)
     //i'm gonna take a stab here and say that the third argument for axios is for setting header property
 
     dispatch({  type: USER_UPDATE_SUCCESS})

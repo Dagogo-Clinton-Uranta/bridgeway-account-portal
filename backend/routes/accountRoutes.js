@@ -10,7 +10,7 @@ import {userSpecificMessages,allUnseenMessages,messageAlertOff} from '../control
 const router = express.Router()
 
 //@ Fetch all users
-//@ /api/accounts
+//@ ${baseUrl}/api/accounts
 //@access Public
 
 // all routes must be above the :accountId route otherwise , transactions will be taken as an id

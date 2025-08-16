@@ -7,7 +7,7 @@ import asyncHandler from 'express-async-handler'
 import mongoose from 'mongoose'
 
 //@desc  create new order
-//@route POST /api/orders
+//@route POST ${baseUrl}/api/orders
 //@access Private
 
 const addOrderItems = asyncHandler(async (req,res)=>{
@@ -41,7 +41,7 @@ const addOrderItems = asyncHandler(async (req,res)=>{
 
 
 //@desc  Get order by ID
-//@route GET /api/orders/:id
+//@route GET ${baseUrl}/api/orders/:id
 //@access Private
 
 const getOrderById = asyncHandler(async (req,res)=>{
@@ -61,7 +61,7 @@ const getOrderById = asyncHandler(async (req,res)=>{
 
 
 //@desc  Update order to paid
-//@route GET /api/orders/:id/pay
+//@route GET ${baseUrl}/api/orders/:id/pay
 //@access Private
 const updateOrderToPaid = asyncHandler(async (req,res)=>{
   res.header("Access-Control-Allow-Origin","*")
@@ -87,7 +87,7 @@ const updateOrderToPaid = asyncHandler(async (req,res)=>{
 })
 
 //@desc  Update order to paid
-//@route GET /api/orders/:id/deliver
+//@route GET ${baseUrl}/api/orders/:id/deliver
 //@access Private/Admin
 const updateOrderToDelivered = asyncHandler(async (req,res)=>{
   res.header("Access-Control-Allow-Origin","*")
@@ -111,7 +111,7 @@ const updateOrderToDelivered = asyncHandler(async (req,res)=>{
 
 
 //@desc  get logged in user orders
-//@route GET /api/orders/myorders
+//@route GET ${baseUrl}/api/orders/myorders
 //@access Private
 const getMyOrders = asyncHandler(async (req,res)=>{
   res.header("Access-Control-Allow-Origin","*")
@@ -120,7 +120,7 @@ const getMyOrders = asyncHandler(async (req,res)=>{
 })
 
 //@desc  get all orders
-//@route GET /api/orders
+//@route GET ${baseUrl}/api/orders
 //@access Private Admin
 const getOrders = asyncHandler(async (req,res)=>{
   res.header("Access-Control-Allow-Origin","*")
@@ -137,7 +137,7 @@ const getOrders = asyncHandler(async (req,res)=>{
 })
 
 //@desc  update the merchant's quantity they can deliver
-//@route PATCH /api/orders
+//@route PATCH ${baseUrl}/api/orders
 //@access Private
 const updatePromisedQty = asyncHandler(async (req,res)=>{
   res.header("Access-Control-Allow-Origin","*")

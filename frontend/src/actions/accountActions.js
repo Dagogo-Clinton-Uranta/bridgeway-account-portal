@@ -22,7 +22,7 @@ import {
     try{
         dispatch({type:ACCOUNT_DETAILS_REQUEST})
 
-        const {data} = await axios.get(`/api/accounts/${id}`)
+        const {data} = await axios.get(`${baseUrl}/api/accounts/${id}`)
 
         dispatch({type:ACCOUNT_DETAILS_SUCCESS,
                       payload:data})
@@ -41,7 +41,7 @@ export const showTransactionDetails = (accountId='',month='',year='') => async(d
     try{
         dispatch({type:TRANSACTION_DETAILS_REQUEST})
 
-        const {data} = await axios.get(`/api/accounts/transactions?id=${accountId}&month=${month}&year=${year}`)
+        const {data} = await axios.get(`${baseUrl}/api/accounts/transactions?id=${accountId}&month=${month}&year=${year}`)
 
         dispatch({type:TRANSACTION_DETAILS_SUCCESS,
                       payload:data})
@@ -60,7 +60,7 @@ export const showChatDetails = (accountId) => async(dispatch) => {
     try{
         dispatch({type:CHAT_DETAILS_REQUEST})
 
-        const {data} = await axios.get(`/api/accounts/messages?id=${accountId}`)
+        const {data} = await axios.get(`${baseUrl}/api/accounts/messages?id=${accountId}`)
 
         dispatch({type:CHAT_DETAILS_SUCCESS,
                       payload:data})
@@ -78,7 +78,7 @@ export const showChatDetails = (accountId) => async(dispatch) => {
     try{
         dispatch({type:NEW_CHATS_REQUEST})
 
-        const {data} = await axios.get(`/api/accounts/newmessagelist`)
+        const {data} = await axios.get(`${baseUrl}/api/accounts/newmessagelist`)
 
         dispatch({type:NEW_CHATS_SUCCESS,
                       payload:data})
@@ -103,6 +103,6 @@ export const switchOffAlert = (accountId) => async(dispatch) => {
       }
     //using a request body cuz it's a POST request i guess
 
-       await axios.post('/api/accounts/messages',{accountId},config)
+       await axios.post('${baseUrl}/api/accounts/messages',{accountId},config)
 
  }

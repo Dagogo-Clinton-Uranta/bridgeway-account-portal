@@ -31,7 +31,7 @@ import mongoose from 'mongoose'
 dotenv.config()
 
 //@desc  Auth user & get a token
-//@route POST /api/users/login
+//@route POST ${baseUrl}/api/users/login
 //@access Public
 const authUser = asyncHandler(async (req, res) => {
   res.header("Access-Control-Allow-Origin","*")
@@ -62,7 +62,7 @@ const authUser = asyncHandler(async (req, res) => {
 })
 
 //@desc Set the message that the user wants to convey to the admin
-//@route PATCH /api/users/clientMessage
+//@route PATCH ${baseUrl}/api/users/clientMessage
 //@access Public
 const presentClientMessage = asyncHandler(async (req, res) => {
   res.header("Access-Control-Allow-Origin","*")
@@ -111,7 +111,7 @@ const presentClientMessage = asyncHandler(async (req, res) => {
 
 
 //@desc Set the message that the user wants to convey to the admin
-//@route PATCH /api/users/adminMessage
+//@route PATCH ${baseUrl}/api/users/adminMessage
 //@access Private Admin
 const presentAdminMessage = asyncHandler(async (req, res) => {
   res.header("Access-Control-Allow-Origin","*")
@@ -139,7 +139,7 @@ const presentAdminMessage = asyncHandler(async (req, res) => {
 })
 
  //@desc  Verify a user before payment
-//@route POST /api/users/verify
+//@route POST ${baseUrl}/api/users/verify
 //@access Public
 
 
@@ -264,7 +264,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 })
 //@desc  GET user profile
-//@route GET /api/users/profile
+//@route GET ${baseUrl}/api/users/profile
 //@access Private
 const getUserProfile = asyncHandler(async (req, res) => {
   res.header("Access-Control-Allow-Origin","*")
@@ -294,7 +294,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 })
 
 //@desc  update user profile
-//@route PUT /api/users/profile
+//@route PUT ${baseUrl}/api/users/profile
 //@access Private
 const updateUserProfile = asyncHandler(async (req, res) => {
   res.header("Access-Control-Allow-Origin","*")
@@ -333,7 +333,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
 
 //@desc  GET all users
-//@route GET /api/users
+//@route GET ${baseUrl}/api/users
 //@access Private/Admin
 const getUsers = asyncHandler(async (req, res) => {
   res.header("Access-Control-Allow-Origin","*")
@@ -343,7 +343,7 @@ const getUsers = asyncHandler(async (req, res) => {
 })
 
 //@desc  delete a user
-//@route DELETE /api/users/:id
+//@route DELETE ${baseUrl}/api/users/:id
 //@access Private/Admin
 const deleteUser = asyncHandler(async (req, res) => {
   res.header("Access-Control-Allow-Origin","*")
@@ -361,7 +361,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 })
 
 //@desc  GET user by id
-//@route GET /api/users/:id
+//@route GET ${baseUrl}/api/users/:id
 //@access Private/Admin
 const getUserById = asyncHandler(async (req, res) => {
   res.header("Access-Control-Allow-Origin","*")
@@ -379,7 +379,7 @@ const getUserById = asyncHandler(async (req, res) => {
 
 
 //@desc  update user
-//@route PUT /api/users/:id
+//@route PUT ${baseUrl}/api/users/:id
 //@access Private/Admin
 const updateUser = asyncHandler(async (req, res) => {
   res.header("Access-Control-Allow-Origin","*")

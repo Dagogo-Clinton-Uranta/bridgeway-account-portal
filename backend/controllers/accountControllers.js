@@ -5,7 +5,7 @@ import accounts from '../../uploads/accounts.js'
 
 
 //@desc gets an individual user's account information
-//@route GET /api/accounts/:id
+//@route GET ${baseUrl}/api/accounts/:id
 //@access Private
 
 const getAccountByAccountNumber = asyncHandler(async (req,res) => {

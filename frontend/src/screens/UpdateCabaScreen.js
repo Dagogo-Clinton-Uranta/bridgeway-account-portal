@@ -9,7 +9,7 @@ import {listProductDetails, updateProduct} from '../actions/productActions.js'
 import FormContainer from '../components/FormContainer.js'
 import {PRODUCT_UPDATE_RESET} from '../constants/productConstants.js'
 
-
+import baseUrl from 'src/actions/baseUrl'
 
 
 const UpdateCabaScreen= ({match, history}) => { //he is taking location & history out of the props, normally it is props.history
@@ -76,7 +76,7 @@ const uploadFileHandler =async (e)=>{
        'Content-Type':'multipart/form-data'
      }
     }
-     const {data} =await axios.post('/api/upload', formData ,config)
+     const {data} =await axios.post(`${baseUrl}/api/upload`, formData ,config)
      setImage(data)
      setUploading(false)
    }
@@ -98,7 +98,7 @@ const uploadCallOverHandler =async (e)=>{
        'Content-Type':'multipart/form-data'
      }
     }
-     const {data} =await axios.post('/api/upload/callover', formData ,config)
+     const {data} =await axios.post(`${baseUrl}/api/upload/callover`, formData ,config)
      setImage2(data)
      setUploading2(false)
    }

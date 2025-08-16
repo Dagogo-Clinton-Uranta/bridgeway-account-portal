@@ -7,7 +7,7 @@ import allTransactionsForOneUser from '../controllers/transactionControllers.js'
 const router = express.Router()
 
 //@ Fetch all transactions for a particular user
-//@ /api/transaction
+//@ ${baseUrl}/api/transaction
 //@access Public
 
 router.route('/transaction').get(allTransactionsForOneUser)

@@ -5,7 +5,7 @@ import asyncHandler from 'express-async-handler'
 
 
 //@desc gets an individual user's chat history based on their account number
-//@route GET /api/accounts/:id
+//@route GET ${baseUrl}/api/accounts/:id
 //@access Private
 
 
@@ -28,7 +28,7 @@ if(messageExist.length !== 0){
 })
 
 //@desc gets all the chats that havent been seen by the admin
-//@route GET /api/accounts/newmessagelist
+//@route GET ${baseUrl}/api/accounts/newmessagelist
 //@access Private
 
 
@@ -52,7 +52,7 @@ export  const allUnseenMessages = asyncHandler(async (req,res) => {
 
 
   //@desc turns the user alert property of a specific user to false
-//@route POST /api/accounts/messages
+//@route POST ${baseUrl}/api/accounts/messages
 //@access Public
 
 

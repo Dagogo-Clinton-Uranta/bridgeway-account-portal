@@ -41,7 +41,7 @@ const ProfileScreen = ({location, history}) => { //he is taking location & histo
        history.push('/login')
     }else{
       if(!user.name){ /*i changed user.name to userInfo.name,to test */
-        dispatch(getUserDetails('profile')/*profile serves as the ID here, so that in the get userDetails route, it hits  /api/users/profile route, and not an actual id*/)
+        dispatch(getUserDetails('profile')/*profile serves as the ID here, so that in the get userDetails route, it hits  ${baseUrl}/api/users/profile route, and not an actual id*/)
           dispatch(listMyOrders())
       }else{
      setName(user.name)
