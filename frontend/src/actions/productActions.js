@@ -27,7 +27,7 @@ import {PRODUCT_LIST_REQUEST,
          } from '../constants/productConstants.js'
 
 import axios from 'axios'
-import baseUrl from 'src/actions/baseUrl'
+import baseUrl from './baseUrl.js'
 
 
 

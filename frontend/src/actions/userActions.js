@@ -37,7 +37,7 @@
        } from '../constants/UserConstants.js'
 
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants.js'
-import baseUrl from 'src/actions/baseUrl'
+import baseUrl from './baseUrl.js'
 
 
 export const login = (email,password) => async(dispatch) =>{

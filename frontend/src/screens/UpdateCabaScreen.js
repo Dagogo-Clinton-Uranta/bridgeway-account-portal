@@ -9,7 +9,7 @@ import {listProductDetails, updateProduct} from '../actions/productActions.js'
 import FormContainer from '../components/FormContainer.js'
 import {PRODUCT_UPDATE_RESET} from '../constants/productConstants.js'
 
-import baseUrl from 'src/actions/baseUrl'
+import baseUrl from '../actions/baseUrl.js'
 
 
 const UpdateCabaScreen= ({match, history}) => { //he is taking location & history out of the props, normally it is props.history
